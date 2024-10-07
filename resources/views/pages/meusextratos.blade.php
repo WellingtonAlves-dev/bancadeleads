@@ -3,47 +3,33 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Gestão de Leads</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Movimentação Financeira</li>
+          <li class="breadcrumb-item"><a href="#">Gerenciamento de Leads</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Extratos Financeiros</li>
         </ol>
     </nav>
 </div>
 @endsection
 @section("menu")
-    {{-- <h5>Movimentação total: R$ {{$movimentacaoTotal}}</h5> --}}
     <h5>Saldo atual: R$ {{$saldoAtual}}</h5>
 @endsection
 @section("tabela")
-<table class="table table-bordered" style="font-size: 11px" id="dataTable" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>AÇÃO</th>
-            <th>Valor da Compra</th>
-            <th>
-                Saldo Anterior
-            </th>
-            <th>
-                Saldo Atual
-            </th>
-            <th>Informação</th>
-            <th>Data e Horário</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($extratos as $extrato)
-            <tr>
-                <td>{{$extrato->id}}</td>
-                <td>{{$extrato->tipo}}</td>
-                <td>{{ number_format($extrato->valor, 2, ",", ".")}}</td>
-                <td>{{ number_format($extrato->saldo_anterior, 2, ",", ".") ?? "Sem saldo registrado" }}</td>
-                <td>{{ number_format($extrato->saldo_atual, 2, ",", ".") ?? "Sem saldo registrado" }}</td>
-                <td>{{$extrato->observação}}</td>
-                <td>{{$extrato->created_at->format("d/m/Y H:i:s")}}</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="row">
+    @foreach ($extratos as $extrato)
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">Transação #{{$extrato->id}}</h5>
+                    <p class="card-text"><strong>Ação:</strong> {{$extrato->tipo}}</p>
+                    <p class="card-text"><strong>Valor da Compra:</strong> R$ {{ number_format($extrato->valor, 2, ",", ".")}}</p>
+                    <p class="card-text"><strong>Saldo Anterior:</strong> R$ {{ number_format($extrato->saldo_anterior, 2, ",", ".") ?? "Sem saldo registrado" }}</p>
+                    <p class="card-text"><strong>Saldo Atual:</strong> R$ {{ number_format($extrato->saldo_atual, 2, ",", ".") ?? "Sem saldo registrado" }}</p>
+                    <p class="card-text"><strong>Informação:</strong> {{$extrato->observação}}</p>
+                    <p class="card-text"><small class="text-muted">Data e Horário: {{$extrato->created_at->format("d/m/Y H:i:s")}}</small></p>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
 <div class="d-flex justify-content-end">
     {{$extratos->onEachSide(0)->links()}}
 </div>

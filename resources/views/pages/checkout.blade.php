@@ -80,14 +80,14 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Cliente</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Adicionar Saldo</li>
+          <li class="breadcrumb-item"><a href="#">Área do Cliente</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Adicionar Crédito</li>
         </ol>
     </nav>
 </div>
     <div class="container container-central">
         <h2>
-            Adicionar Saldo
+            Adicionar Crédito
         </h2>
 
         <p class="copy-text">

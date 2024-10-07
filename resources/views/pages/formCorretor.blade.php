@@ -1,11 +1,20 @@
 @extends("templates.form")
 @section("title")
-@if(Request::is("corretores/editar/*"))
-    Editar corretor {{$corretor->nome}}
-@else
-    Novo corretor
-@endif
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Gerenciamento de Leads</a></li>
+      <li class="breadcrumb-item"><a href="{{url("/corretores")}}">Meus Agentes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+            @if(Request::is("corretores/editar/*"))
+                Editar Agente {{$corretor->nome}}
+            @else
+                Novo Agente
+            @endif
+      </li>
+    </ol>
+</nav>
 @endsection
+
 @section("form")
 <form method="POST" 
 @if(Request::is("corretores/editar/*"))
@@ -13,57 +22,81 @@
 @else 
     action="{{url("corretor/salvar")}}" 
 @endif
-id="formSubmit">
+id="formSubmit" class="form-horizontal shadow p-4 bg-white rounded">
     @csrf
     @include("components.alert")
-    <div class="form-group">
-        <label for="ativo">Ativo</label>
-        <input type="checkbox" name="ativo" id="ativo"
-            @if(Request::is("corretores/editar/*"))
-                @if($corretor->ativo)
+
+    <div class="form-group row">
+        <label for="ativo" class="col-sm-2 col-form-label">Ativo</label>
+        <div class="col-sm-10">
+            <input type="checkbox" name="ativo" id="ativo"
+                @if(Request::is("corretores/editar/*"))
+                    @if($corretor->ativo)
+                        checked
+                    @endif
+                @else
                     checked
                 @endif
-            @else
-                checked
-            @endif
-        />
+            />
+        </div>
     </div>
-    <div class="form-group">
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="name" id="nome"
+
+    <div class="form-group row">
+        <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="nome"
                 placeholder="Ex. João Silva"
                 value="{{$corretor->name ?? ""}}"
             />
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="telefone">E-mail</label>
-            <input type="text" class="form-control" name="email" id="email"
+    </div>
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
                 placeholder="Ex. contato@indicasaude.com.br"
                 value="{{$corretor->email ?? ""}}"
             />
-        </div>
-        <div class="form-group">
-            <label for="password">Senha</label>
-            <input type="text" class="form-control" name="password" id="password"/>
-            @if(Request::is("admin/users/editar/*"))
-            <small>
-                Não quer mudar a senha? Deixe o campo em branco. O formulário só alterará sua senha se você preenchê-lo. Se não preencher, a senha continuará a mesma.
-            </small>
-            @endif
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">
-        Salvar
-    </button>
-    <a href="{{url("/corretores")}}" class="btn btn-secondary">Voltar</a>
 
-    <br/>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Senha</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password"/>
+            @if(Request::is("corretores/editar/*"))
+                <small class="form-text text-muted">
+                    Deixe em branco se não deseja alterar a senha.
+                </small>
+            @endif
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">
+                Salvar
+            </button>
+            <a href="{{url("/corretores")}}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+
     @if(isset($corretor))
-    <div class="float-right">
-        Criado em {{$corretor->created_at->format("d/m/Y")}} às {{ $corretor->created_at->format("H:i:s") }}
-        <br/>
-        Ultima atualização em {{$corretor->updated_at->format("d/m/Y")}} às {{ $corretor->updated_at->format("H:i:s") }}
+    <div class="text-right mt-3">
+        <small>
+            Criado em {{$corretor->created_at->format("d/m/Y")}} às {{ $corretor->created_at->format("H:i:s") }} <br/>
+            Última atualização em {{$corretor->updated_at->format("d/m/Y")}} às {{ $corretor->updated_at->format("H:i:s") }}
+        </small>
     </div>
     @endif
 
@@ -73,8 +106,9 @@ id="formSubmit">
         </div>
     @endif
 
-</form> 
+</form>
 @endsection
+
 @section("script")
 <script>
     let FORM = $("#formSubmit");

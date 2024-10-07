@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Gestão de Leads</a></li>
+          <li class="breadcrumb-item"><a href="#">Gerenciamento de Leads</a></li>
           <li class="breadcrumb-item active" aria-current="page">Contestações Solicitadas</li>
         </ol>
     </nav>
@@ -13,39 +13,29 @@
 
 @endsection
 @section("tabela")
-<table class="table table-bordered" style="font-size: 11px" id="dataTable" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Número da contestação</th>
-            <th>Número da Lead</th>
-            <th>Situação atual</th>
-            {{-- <th>PERFIL</th>
-            <th>DDD</th>
-            <th>TELEFONE</th>
-            <th>E-MAIL</th>
-            <th>NOME</th>
-            <th>PLANO</th>
-            <th>TIPO</th>
-            <th>AQUISIÇÃO</th>
-            <th>CORRETOR</th> --}}
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($reposicoes as $reposicao)
-            <tr>
-                <td>{{$reposicao->id}}</td>
-                <td>{{$reposicao->lead_id}}</td>
-                <td>
-                    @if($reposicao->status === "rejeitada")
-                        <a href="#" onclick="alert('{{$reposicao->motivo_reprovacao}}')">Rejeitada</a>
-                    @else
-                    <strong>{{ucfirst($reposicao->status)}}</strong>
-                    @endif    
-                </td>
-            </tr>   
-        @endforeach
-    </tbody>
-</table>
+<div class="row">
+    @foreach($reposicoes as $reposicao)
+        <div class="col-md-4">
+            <div class="card mb-4" style="background-color: white !important;">
+                <div class="card-body" style="background-color: white !important;">
+                    <h5 class="card-title">Número da Contestação: {{$reposicao->id}}</h5>
+                    <p class="card-text">Número da Lead: {{$reposicao->lead_id}}</p>
+
+                    <!-- Situação Atual -->
+                    <p class="card-text">
+                        Situação:
+                        @if($reposicao->status === "rejeitada")
+                            <span class="badge bg-danger">Rejeitada</span>
+                            <a href="#" class="btn btn-sm btn-outline-danger mt-2" onclick="alert('{{$reposicao->motivo_reprovacao}}')">Ver Motivo</a>
+                        @else
+                            <span class="badge bg-success text-white">{{ ucfirst($reposicao->status) }}</span>
+                        @endif
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
 <div class="d-flex justify-content-end">
     {{$reposicoes->onEachSide(0)->withQueryString()->links()}}
 </div>

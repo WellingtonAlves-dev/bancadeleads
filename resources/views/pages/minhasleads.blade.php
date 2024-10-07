@@ -3,8 +3,8 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Gestão de Leads</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Carteira de Leads</li>
+          <li class="breadcrumb-item"><a href="#">Gerenciamento de Leads</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Minhas Leads</li>
         </ol>
     </nav>
 </div>
@@ -16,53 +16,26 @@
 </button>
 @endsection
 @section("tabela")
-<table class="table table-bordered" style="font-size: 11px" id="dataTable" width="100%" cellspacing="0">
+{{-- <table class="table table-bordered" style="font-size: 12px" id="dataTable" width="100%" cellspacing="0">
     <thead>
         <tr>
-            <th>ID LEAD</th>
+            <th>ID</th>
             @if(!Auth::user()->vinculado)
-                <th>PREÇO</th>
+                <th>Valor</th>
             @endif
-            <th>PERFIL</th>
-            {{-- <th>DDD</th> --}}
-            <th>TELEFONE</th>
-            <th>E-MAIL</th>
-            <th>NOME</th>
-            <th>PLANO</th>
-            <th>TIPO</th>
-            <th>AQUISIÇÃO</th>
-            <th>CORRETOR</th>
-            <th>EXTRA</th>
-            {{-- @if(!Auth::user()->vinculado)
-                <th>LEAD FRIA</th>
-            @endif --}}
-            <th><!-- REPOSIÇÃO --></th>
-            <th><!-- ENVIAR LEAD --></th>
+            <th>Idade</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Nome</th>
+            <th>Plano</th>
+            <th>Categoria</th>
+            <th>Data de Aquisição</th>
+            <th>Corretor</th>
+            <th>Informações Adicionais</th>
+            <th>Contestar</th>
+            <th>Ação</th>
         </tr>
     </thead>
-    <tfoot>
-        <tr>
-            <th>ID LEAD</th>
-            @if(!Auth::user()->vinculado)
-                <th>PREÇO</th>
-            @endif
-            <th>PERFIL</th>
-            {{-- <th>DDD</th> --}}
-            <th>TELEFONE</th>
-            <th>E-MAIL</th>
-            <th>NOME</th>
-            <th>PLANO</th>
-            <th>TIPO</th>
-            <th>AQUISIÇÃO</th>
-            <th>CORRETOR</th>
-            <th>EXTRA</th>
-            {{-- @if(!Auth::user()->vinculado)
-                <th>LEAD FRIA</th>
-            @endif --}}
-            <th><!-- REPOSIÇÃO --></th>
-            <th><!-- ENVIAR LEAD --></th>
-        </tr>
-    </tfoot>
     <tbody>
         @foreach ($leads as $key => $lead)
             @php
@@ -76,29 +49,22 @@
                     <td>R$ {{ number_format($lead->preco, 2, ",", ".") }}</td>
                 @endif
                 <td>{{$lead->idade}}</td>
-                {{-- <td>{{$lead->ddd}}</td> --}}
                 <td>({{$lead->ddd}}) {{$lead->telefone}}</td>
                 <td>{{$lead->email}}</td>
                 <td>{{$lead->nome_lead}}</td>
                 <td>{{$lead->plano->nome}}</td>
                 <td>{{$lead->tipo->nome}}</td>
-                <td>{{date("d/m/Y H:m:s", strtotime($lead->dataAquisicao))}}</td>
+                <td>{{date("d/m/Y H:i:s", strtotime($lead->dataAquisicao))}}</td>
                 <td id="tr_{{$key}}">
-                    {{-- verificar se lead tem corretor --}}
                     @if($lead->corretor)
                         <a href="{{url("corretores/editar/".$lead->corretor_id)}}" target="_blank">{{ $lead->corretor }}</a>
                     @else
-                        Lead sem corretor
+                        Sem corretor
                     @endif
                 </td>
                 <td>
                     {{$lead->extra ?? ""}}
                 </td>
-                {{-- @if(!Auth::user()->vinculado)
-                    <td>
-                            {{($lead->statusLeadFria ?? false) ? "SIM" : "NÃO" }}
-                    </td>
-                @endif --}}
                 <td>
                     @if(Auth::user()->role == "user")
                         @php
@@ -106,25 +72,25 @@
                         @endphp
                         @if($lead->reposicaoID)
                             <button 
-                                onclick="alert('Contestação já solicitada para esta Lead')"
+                                onclick="alert('Contestação já solicitada')"
                                 style="font-size: 10px;" class="btn btn-sm btn-secondary">
                                 Contestar
                             </button>
                         @elseif($lead->preco > ($saldoReposicao ?? 0))
                             <button 
-                                onclick="alert('Limite de contestação excedido')"
+                                onclick="alert('Limite excedido')"
                                 style="font-size: 10px;" class="btn btn-sm btn-secondary">
                                 Contestar
                             </button>
                         @elseif($blockedReposicao)
                             <button 
-                                onclick="alert('Já expirou o tempo para solicitar a contestação desta Lead')"
+                                onclick="alert('Prazo expirado')"
                                 style="font-size: 10px;" class="btn btn-sm btn-secondary">
                                 Contestar
                             </button>
                         @elseif(($lead->statusLeadFria ?? false))
                             <button 
-                                onclick="alert('Não é possível solicitar contestação de leads frias')"
+                                onclick="alert('Leads frias não são contestáveis')"
                                 style="font-size: 10px;" class="btn btn-sm btn-secondary">
                                 Contestar
                             </button>
@@ -138,18 +104,107 @@
                             </span>
                         @endif
                     @else
-                        <small>Somente o usuário que comprou a lead pode solicitar a contestação</small>
+                        <small>Somente o comprador pode contestar</small>
                     @endif
                 </td>
                 <th>
                     @if(Auth::user()->role == "user")
-                        <button class="btn btn-sm btn-primary" onclick="{{$lead->corretor ? "alert('Esta lead já foi atribuída a um corretor. Se você enviar para outro corretor, ela será removida do corretor atual.');" : ""}}enviarLeadModal('{{$lead->id}}', '{{$key}}')" style="font-size: 10px;">Enviar P/ Corretor</button>
+                        <button class="btn btn-sm btn-primary" onclick="{{$lead->corretor ? "alert('Esta lead já está com um corretor.')" : ""}}enviarLeadModal('{{$lead->id}}', '{{$key}}')" style="font-size: 10px;">Enviar para Corretor</button>
                     @endif
                 </th>
             </tr>
         @endforeach
     </tbody>
-</table>
+</table> --}}
+<div class="row">
+    @foreach ($leads as $key => $lead)
+        @php
+            if($lead->reposicaoID && $lead->reposicaoStatus === "aprovada") {
+                continue;
+            }
+        @endphp
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="d-flex align-items-center p-3">
+                    <!-- Imagem ajustada ao lado esquerdo -->
+                    <img src="{{url('storage/'.$lead->plano->logo)}}" style="height: 80px; width: 80px; object-fit: cover;" class="me-3 mr-3" alt="Lead Image">
+                    
+                    <div class="flex-grow-1">
+                        <h5 class="card-title mb-1">ID: {{$lead->id}}</h5>
+                        @if(!Auth::user()->vinculado)
+                            <p class="card-text mb-1">Valor: R$ {{ number_format($lead->preco, 2, ",", ".") }}</p>
+                        @endif
+                        <p class="card-text mb-1">Idade: {{$lead->idade}}</p>
+                        <p class="card-text mb-1">Telefone: ({{$lead->ddd}}) {{$lead->telefone}}</p>
+                        <p class="card-text mb-1">E-mail: {{$lead->email}}</p>
+                        <p class="card-text mb-1">Nome: {{$lead->nome_lead}}</p>
+                        <p class="card-text mb-1">Plano: {{$lead->plano->nome}}</p>
+                        <p class="card-text mb-1">Categoria: {{$lead->tipo->nome}}</p>
+                        <p class="card-text mb-1">Data de Aquisição: {{date("d/m/Y H:i:s", strtotime($lead->dataAquisicao))}}</p>
+                        <p class="card-text mb-1">
+                            Corretor:
+                            @if($lead->corretor)
+                                <span class="badge badge-warning">
+                                    <a href="{{url("corretores/editar/".$lead->corretor_id)}}" target="_blank">{{ $lead->corretor }}</a>
+                                </span>
+                            @else
+                                Sem corretor
+                            @endif
+                        </p>
+                        <p class="card-text mb-1">Informações Adicionais: {{$lead->extra ?? ""}}</p>
+                    </div>
+                </div>
+                
+                <!-- Botões de ação no rodapé do card -->
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    @if(Auth::user()->role == "user")
+                        @php
+                            $blockedReposicao = strtotime(date("Y-m-d H:i:s")) > strtotime($lead->dataAquisicao . " + 48 hours");
+                        @endphp
+                
+                        <div class="badges">
+                            <!-- Verificação de mensagens para os badges -->
+                            @if($lead->reposicaoID)
+                                <span class="badge bg-warning text-dark me-2">Contestação já solicitada</span>
+                            @elseif($lead->preco > ($saldoReposicao ?? 0))
+                                <span class="badge bg-danger me-2">Limite excedido</span>
+                            @elseif($blockedReposicao)
+                                <span class="badge bg-secondary me-2">Prazo expirado</span>
+                            @elseif(($lead->statusLeadFria ?? false))
+                                <span class="badge bg-info me-2">Leads frias não são contestáveis</span>
+                            @endif
+                        </div>
+                
+                        <!-- Botão de contestar com base nas condições -->
+                        <div>
+                            @if($lead->reposicaoID)
+                                <button class="btn btn-sm btn-secondary" disabled>Contestar</button>
+                            @elseif($lead->preco > ($saldoReposicao ?? 0))
+                                <button class="btn btn-sm btn-secondary" disabled>Contestar</button>
+                            @elseif($blockedReposicao)
+                                <button class="btn btn-sm btn-secondary" disabled>Contestar</button>
+                            @elseif(($lead->statusLeadFria ?? false))
+                                <button class="btn btn-sm btn-secondary" disabled>Contestar</button>
+                            @else
+                                <button class="btn btn-sm btn-secondary" onclick="modalReposicao('{{$lead->id}}')" {{$blockedReposicao ? "disabled" : ""}}>Contestar</button>
+                            @endif
+                        </div>
+                    @else
+                        <small>Somente o comprador pode contestar</small>
+                    @endif
+                </div>
+
+                <div class="card-footer">
+                    @if(Auth::user()->role == "user")
+                        <button class="btn btn-sm btn-primary" onclick="{{$lead->corretor ? "alert('Esta lead já pertence a um corretor.')" : ""}};enviarLeadModal('{{$lead->id}}', '{{$key}}')">Enviar para Corretor</button>
+                    @endif
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+
 <div class="d-flex justify-content-end">
     {{$paginador->onEachSide(0)->withQueryString()->links()}}
 </div>

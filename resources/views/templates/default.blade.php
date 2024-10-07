@@ -28,7 +28,7 @@
                 height: auto;
             }
         }
-
+    
         .overlay {
             position: fixed;
             width: 100vw;
@@ -39,9 +39,11 @@
             display: none;
             transition: opacity 0.3s ease-in-out;
         }
+    
         .overlay.active {
             display: block !important;
         }
+    
         .drawer {
             position: absolute;
             top: 0;
@@ -53,17 +55,17 @@
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
         }
-
+    
         @media screen and (min-width: 728px) {
             .drawer {
                 width: 40%;
             }
         }
-
+    
         .drawer.active {
             transform: translateX(0);
         }
-
+    
         .drawer .close-btn {
             position: absolute;
             top: 15px;
@@ -72,27 +74,59 @@
             cursor: pointer;
             color: #333;
         }
-
+    
         .drawer .nav-item {
             padding: 15px;
             border-bottom: 1px solid #eee;
         }
-
+    
         .drawer .nav-item a {
             color: #333;
             font-size: 16px;
             display: flex;
             align-items: center;
         }
-
+    
         .drawer .nav-item a i {
             margin-right: 10px;
         }
-
+    
         .drawer .nav-item:hover {
             background-color: #f9f9f9;
         }
-
+    
+        /* Estilos do Submenu */
+        .drawer .has-submenu {
+            position: relative;
+        }
+    
+        .drawer .submenu {
+            display: none; /* Ocultar por padrão */
+            padding-left: 15px;
+            background-color: #f1f1f1; /* Fundo do submenu */
+        }
+    
+        .drawer .has-submenu.active .submenu {
+            display: block; /* Mostrar quando ativo */
+        }
+    
+        .drawer .submenu li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+    
+        .drawer .submenu li a {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            padding-left: 20px; /* Indentação do link do submenu */
+        }
+    
+        .drawer .submenu li a:hover {
+            background-color: #e9ecef; /* Fundo ao passar o mouse */
+            text-decoration: underline;
+        }
+    
         /* New Styles for Titles */
         .section-title {
             font-size: 14px;
@@ -101,7 +135,7 @@
             color: #0055a5;
             padding-left: 15px;
         }
-
+    
         /* body {
             transform: scale(0.75);
             transform-origin: top left;
@@ -111,14 +145,14 @@
         *[style*="100vw"] {
             width: calc(100vw / 0.75);
         }
-
+    
         /* Ajusta todos os elementos que têm altura de 100vh */
-        *[style*="100vh"] {
+        /* *[style*="100vh"] {
             height: calc(100vh / 0.75);
-        } */
-
-
+        } */ 
+    
     </style>
+    
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -133,7 +167,7 @@
     <div id="wrapper">
         <div class="overlay" id="overlay"></div>
         <!-- Drawer Sidebar -->
-        <div class="drawer" id="drawerSidebar">
+        {{-- <div class="drawer" id="drawerSidebar">
             <!-- Botão de Fechar -->
             <span class="close-btn" id="closeDrawer">&times;</span>
         
@@ -168,7 +202,7 @@
                 @endif
         
                 @if(Auth::user()->role !== "admin")
-                    <li class="section-title">Gestão de Leads</li>
+                    <li class="section-title">Gerenciamento de Leads</li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url("/minhas/leads")}}">
                             <i class="fas fa-folder-open"></i> Carteira de Leads
@@ -253,8 +287,218 @@
                 @endif
             </ul>
         </div>
-        
+         --}}
     
+         {{-- <div class="drawer" id="drawerSidebar">
+            <!-- Botão de Fechar -->
+            <span class="close-btn" id="closeDrawer">&times;</span>
+        
+            <!-- Nav Items -->
+            <ul class="navbar-nav">
+                @if(Auth::user()->role == "user")
+                    <li class="section-title">Área do Cliente</li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/checkout")}}">
+                            <i class="fas fa-wallet"></i> Adicionar Crédito
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/pacotes")}}">
+                            <i class="fas fa-box-open"></i> Pacotes de Leads
+                        </a>
+                    </li>
+                @endif
+        
+                @if(in_array(Auth::user()->role, ["admin", "user"]))
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/leads")}}">
+                            <span>
+                                @if(Auth::user()->role == "admin")
+                                    Leads Disponíveis
+                                @else
+                                    <i class="fas fa-shopping-cart"></i> Comprar Leads
+                                @endif
+                            </span>
+                        </a>
+                    </li>
+                @endif
+        
+                @if(Auth::user()->role !== "admin")
+                    <li class="section-title">Gerenciamento de Leads</li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/minhas/leads")}}">
+                            <i class="fas fa-folder"></i> Minhas Leads
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/reposicoes")}}">
+                            <i class="fas fa-exchange-alt"></i> Reposições Solicitadas
+                        </a>
+                    </li>
+                @endif
+        
+                @if(Auth::user()->role === "user")
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/corretores")}}">
+                            <i class="fas fa-user-tie"></i> Meus Agentes
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/meus/extratos")}}">
+                            <i class="fas fa-receipt"></i> Extratos Financeiros
+                        </a>
+                    </li>
+                @endif
+        
+                @if(Auth::user()->role == "admin")
+                    <li class="section-title">Administração</li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/planos")}}">
+                            <i class="fas fa-cogs"></i> Gerenciar Planos
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/tipos")}}">
+                            <i class="fas fa-tags"></i> Categorias
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/pacotes")}}">
+                            <i class="fas fa-boxes"></i> Gerenciar Pacotes
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/users")}}">
+                            <i class="fas fa-user-cog"></i> Usuários Registrados
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/financeiro/vendas")}}">
+                            <i class="fas fa-dollar-sign"></i> Vendas e Financeiro
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/notificacoes")}}">
+                            <i class="fas fa-bell"></i> Notificações de Pagamento
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/reposicoes")}}">
+                            <i class="fas fa-sync-alt"></i> Reposições de Leads
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/avisos")}}">
+                            <i class="fas fa-exclamation-circle"></i> Avisos Gerais
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/marketing/mobile")}}">
+                            <i class="fas fa-bullhorn"></i> Campanhas Mobile
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/marketing")}}">
+                            <i class="fas fa-bullhorn"></i> Marketing Geral
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/admin/marketing/templates")}}">
+                            <i class="fas fa-palette"></i> Modelos de Marketing
+                        </a>
+                    </li>
+                @endif
+            </ul>
+        </div> --}}
+        
+        <div class="drawer" id="drawerSidebar">
+            <!-- Botão de Fechar -->
+            <span class="close-btn" id="closeDrawer">&times;</span>
+        
+            <!-- Nav Items -->
+            <ul class="navbar-nav">
+                @if(Auth::user()->role == "user")
+                    <!-- Adicionar Crédito no topo, sem submenu -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url("/checkout")}}">
+                            <i class="fas fa-wallet"></i> Adicionar Crédito
+                        </a>
+                    </li>
+                @endif
+        
+                <!-- Pacotes e Leads com Submenu -->
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-box-open"></i> Pacotes e Leads <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                    </a>
+                    <ul class="submenu">
+                        @if(Auth::user()->role == "admin")
+                            <li><a href="{{url("/leads")}}">Leads Disponíveis</a></li>
+                        @else
+                            <li><a href="{{url("/leads")}}">Comprar Leads</a></li>
+                        @endif
+                        <li><a href="{{url("/pacotes")}}">Pacotes de Leads</a></li>
+                        <li><a href="{{url("/minhas/leads")}}">Minhas Leads</a></li>
+                    </ul>
+                </li>
+        
+                @if(Auth::user()->role !== "admin")
+                    <!-- Reposições de Leads com Submenu -->
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-exchange-alt"></i> Reposições de Leads <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{url("/reposicoes")}}">Reposições Solicitadas</a></li>
+                        </ul>
+                    </li>
+                @endif
+        
+                @if(Auth::user()->role === "user")
+                    <!-- Gestão de Agentes com Submenu -->
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user-tie"></i> Gestão de Agentes <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{url("/corretores")}}">Meus Agentes</a></li>
+                            <li><a href="{{url("/meus/extratos")}}">Extratos Financeiros</a></li>
+                        </ul>
+                    </li>
+                @endif
+        
+                @if(Auth::user()->role === "admin")
+                    <!-- Administração com Submenu -->
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cogs"></i> Administração <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{url("/admin/planos")}}">Gerenciar Planos</a></li>
+                            <li><a href="{{url("/admin/tipos")}}">Categorias</a></li>
+                            <li><a href="{{url("/admin/pacotes")}}">Gerenciar Pacotes</a></li>
+                            <li><a href="{{url("/admin/users")}}">Usuários Registrados</a></li>
+                            <li><a href="{{url("/admin/financeiro/vendas")}}">Vendas e Financeiro</a></li>
+                        </ul>
+                    </li>
+        
+                    <!-- Marketing com Submenu -->
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-bullhorn"></i> Marketing <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="{{url("/admin/marketing/mobile")}}">Campanhas Mobile</a></li>
+                            <li><a href="{{url("/admin/marketing")}}">Marketing Geral</a></li>
+                            <li><a href="{{url("/admin/marketing/templates")}}">Modelos de Marketing</a></li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+        
+        
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -570,6 +814,18 @@
             overlay.classList.remove("active");
         });
 
+        $(document).ready(function(){
+        
+            document.querySelectorAll('.has-submenu > .nav-link').forEach(function (element) {
+                element.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var submenu = this.nextElementSibling;
+                    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+
+        });
     </script>
     @yield("script")
 </body>

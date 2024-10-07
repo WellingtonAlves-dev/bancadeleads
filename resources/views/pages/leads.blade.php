@@ -270,7 +270,7 @@ $estados = array(
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Cliente</a></li>
+          <li class="breadcrumb-item"><a href="#">Área do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Comprar Leads</li>
         </ol>
     </nav>
@@ -293,7 +293,7 @@ $estados = array(
 <div class="container">
     <div class="d-flex justify-content-between">
         <button class="btn filter-btn" data-toggle="modal" data-target="#filterModal">Filtrar Leads</button>
-        <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Adicionar Saldo</button>
+        <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Adicionar Crédito</button>
     </div>
 </div>
 

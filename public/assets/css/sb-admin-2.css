@@ -4533,11 +4533,20 @@ input[type="button"].btn-block {
   border-top: 0;
 }
 
-.card-body {
+/* .card-body {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+} */
+
+.card-body {
+  padding: 1.5rem; /* Mais espaço para o conteúdo */
+  background-color: #f0f4f8; /* Cor de fundo clara e limpa */
+  border-radius: 0 0 8px 8px; /* Bordas arredondadas na parte inferior */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  color: #333; /* Cor de texto escura para melhor contraste */
 }
+
 
 .card-title {
   margin-bottom: 0.75rem;
@@ -4561,22 +4570,43 @@ input[type="button"].btn-block {
 }
 
 .card-header {
+  padding: 1rem;
+  background-color: #1c2541; /* Azul mais suave */
+  border-bottom: 1px solid #1c2541;
+  color: #ffffff;
+  font-weight: 500; /* Peso da fonte mais leve */
+  font-size: 1.1rem; /* Tamanho da fonte levemente maior */
+  border-radius: 8px 8px 0 0; /* Bordas arredondadas no topo */
+}
+
+
+
+/* .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: #172152;
   border-bottom: 1px solid #172152;
   color: white;
-}
+} */
 
 .card-header:first-child {
   border-radius: calc(0.35rem - 1px) calc(0.35rem - 1px) 0 0;
 }
 
-.card-footer {
+/* .card-footer {
   padding: 0.75rem 1.25rem;
   background-color: #f8f9fc;
   border-top: 1px solid #e3e6f0;
+} */
+
+.card-footer {
+  padding: 0.75rem;
+  background-color: #ffffff;
+  border-top: 1px solid #d1d8e0; /* Cor de borda mais clara */
+  text-align: right; /* Alinhamento de conteúdo à direita */
+  border-radius: 0 0 8px 8px; /* Mantém as bordas arredondadas */
 }
+
 
 .card-footer:last-child {
   border-radius: 0 0 calc(0.35rem - 1px) calc(0.35rem - 1px);
