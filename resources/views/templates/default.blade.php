@@ -467,13 +467,13 @@
         
                 @if(Auth::user()->role === "admin")
                     <!-- Administração com Submenu -->
-                    <li class="nav-item has-submenu">
+                    <li class="nav-item has-submenu" style="margin-top: 50px">
                         <a class="nav-link" href="#">
                             <i class="fas fa-cogs"></i> Administração <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{url("/leads")}}">Leads Avulsas</a></li>
-                            <li><a href="{{url("/admin/leads")}}">Pacotes de Leads</a></li>
+                            <li><a href="{{url("/admin/pacotes")}}">Pacotes de Leads</a></li>
                             <li><a href="{{url("/admin/planos")}}">Gerenciar Planos</a></li>
                             <li><a href="{{url("/admin/tipos")}}">Categorias</a></li>
                             <li><a href="{{url("/admin/pacotes")}}">Gerenciar Pacotes</a></li>
