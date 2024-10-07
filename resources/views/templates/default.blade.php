@@ -475,8 +475,7 @@
                             <li><a href="{{url("/leads")}}">Leads Avulsas</a></li>
                             <li><a href="{{url("/admin/pacotes")}}">Pacotes de Leads</a></li>
                             <li><a href="{{url("/admin/planos")}}">Gerenciar Planos</a></li>
-                            <li><a href="{{url("/admin/tipos")}}">Categorias</a></li>
-                            <li><a href="{{url("/admin/pacotes")}}">Gerenciar Pacotes</a></li>
+                            <li><a href="{{url("/admin/tipos")}}">Tipos</a></li>
                             <li><a href="{{url("/admin/users")}}">Usuários Registrados</a></li>
                             <li><a href="{{url("/admin/financeiro/vendas")}}">Vendas e Financeiro</a></li>
                             <li><a href="{{url("/admin/notificacoes")}}">Notificações de vendas</a></li>
