@@ -477,6 +477,7 @@
                             <li><a href="{{url("/admin/pacotes")}}">Gerenciar Pacotes</a></li>
                             <li><a href="{{url("/admin/users")}}">Usuários Registrados</a></li>
                             <li><a href="{{url("/admin/financeiro/vendas")}}">Vendas e Financeiro</a></li>
+                            <li><a href="{{url("/admin/notificacoes")}}">Notificações de vendas</a></li>
                         </ul>
                     </li>
         

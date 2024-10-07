@@ -36,10 +36,12 @@ class MercadoPagoController extends Controller
         $unique_key = time() . "id" . Auth::user()->id;
 
         $preferences->notification_url = url("api/notificacao/mercadopago/".$unique_key);
-        $preferences->back_urls = array(
-            "success" => url("api/backurl/".$unique_key)
-        );
         $preferences->auto_return = "approved";
+        $preferences->back_urls = array(
+            "success" => url("/"),
+            "failure" => url("/"),
+            "pending" => url("/")
+        );
         // $preferences->notification_url = "https://449c-2804-1b3-ab03-2f3e-e13e-973b-7e12-5399.ngrok-free.app/api/notificacao/mercadopago/".$unique_key;
         $preferences->items = array($item);
         if($preferences->save()) {
