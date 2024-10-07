@@ -25,7 +25,7 @@
                 <div class="d-flex flex-column">
                     <span style="font-size: 24px" class="font-weight-bold">
                         <i class="far fa-user"></i>
-                         {{$lead->qtd_vidas}}
+                         {{$lead->idade}}
                     </span>
                 </div>
                 <span class="lead-location-10">DDD {{$lead->ddd}}</span>
