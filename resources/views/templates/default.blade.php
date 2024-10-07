@@ -437,8 +437,11 @@
                             <li><a href="{{url("/leads")}}">Comprar Lead Avulsa</a></li>
                         @endif
                         <li><a href="{{url("/pacotes")}}">Comprar Pacote de Leads</a></li>
-                        <li><a href="{{url("/minhas/leads")}}">Leads Que Comprei</a></li>
                     </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{url("/minhas/leads")}}"><i class="fas fa-receipt"></i> Leads Que Comprei</a>
                 </li>
                 @endif
 

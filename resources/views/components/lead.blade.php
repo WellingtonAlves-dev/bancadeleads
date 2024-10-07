@@ -32,7 +32,7 @@
                     <div>
                         <span class="lead-location-10">DDD {{$lead->ddd}}</span>
                         <span class="lead-cnpj-12 ml-2"><i class="far fa-address-card" aria-hidden="true"></i> {{ $lead->cnpj ? 'CNPJ' : 'CPF' }} </span>
-                        <span class="lead-cnpj-12 ml-2"><i class="far fa-building" aria-hidden="true"></i> {{ strtoupper($lead->tipo->nome) }}</span>
+                        {{-- <span class="lead-cnpj-12 ml-2"><i class="far fa-building" aria-hidden="true"></i> {{ strtoupper($lead->tipo->nome) }}</span> --}}
                     </div>
                     <!-- Seção do Botão -->
                     <button class="cta-button-14" onclick="atenderLead('{{$lead->id}}')">
