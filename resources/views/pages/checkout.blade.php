@@ -98,7 +98,7 @@
         <div class="form-group">
             <label for="valorAdd">Insira o valor desejado</label>
             <input type="text" class="form-control" id="valorAdd" placeholder="Ex. R$ 50,00">
-            <small class="form-text text-muted">O valor mínimo é R$ 25,00.</small>
+            {{-- <small class="form-text text-muted">O valor mínimo é R$ 25,00.</small> --}}
         </div>
 
         <button class="cta-btn" id="confirmPay">

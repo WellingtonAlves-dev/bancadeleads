@@ -424,7 +424,6 @@
                             <i class="fas fa-wallet"></i> Adicionar Crédito
                         </a>
                     </li>
-                @endif
         
                 <!-- Pacotes e Leads com Submenu -->
                 <li class="nav-item has-submenu">
@@ -441,7 +440,8 @@
                         <li><a href="{{url("/minhas/leads")}}">Leads Que Comprei</a></li>
                     </ul>
                 </li>
-        
+                @endif
+
                 @if(Auth::user()->role !== "admin")
                     <!-- Reposições de Leads com Submenu -->
                     <li class="nav-item">
@@ -472,6 +472,8 @@
                             <i class="fas fa-cogs"></i> Administração <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
                         </a>
                         <ul class="submenu">
+                            <li><a href="{{url("/leads")}}">Leads Avulsas</a></li>
+                            <li><a href="{{url("/admin/leads")}}">Pacotes de Leads</a></li>
                             <li><a href="{{url("/admin/planos")}}">Gerenciar Planos</a></li>
                             <li><a href="{{url("/admin/tipos")}}">Categorias</a></li>
                             <li><a href="{{url("/admin/pacotes")}}">Gerenciar Pacotes</a></li>
