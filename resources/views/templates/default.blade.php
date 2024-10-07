@@ -29,6 +29,19 @@
             }
         }
 
+        .overlay {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: 998;
+            background-color: black;
+            opacity: 0.6;
+            display: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .overlay.active {
+            display: block !important;
+        }
         .drawer {
             position: absolute;
             top: 0;
@@ -39,6 +52,12 @@
             z-index: 999;
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
+        }
+
+        @media screen and (min-width: 728px) {
+            .drawer {
+                width: 40%;
+            }
         }
 
         .drawer.active {
@@ -96,7 +115,7 @@
     @endif
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        <div class="overlay" id="overlay"></div>
         <!-- Drawer Sidebar -->
         <div class="drawer" id="drawerSidebar">
             <!-- Botão de Fechar -->
@@ -141,8 +160,7 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url("/reposicoes")}}">
-                            <i class="fas fa-gavel"></i> Contestações Solicitadas
-                        </a>
+                            <i class="fas fa-gavel"></i> Contestações Solicitadas </a>
                     </li>
                 @endif
         
@@ -230,8 +248,8 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top"
-                style="padding: 0 !important; height: 120px;"
+                <nav class="navbar shadow navbar-expand navbar-light topbar mb-4 static-top"
+                style="padding: 0 !important; height: 120px;   background-color: #F5F5F5 !important;"
                 >
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -243,6 +261,8 @@
                             alt="Indica Saúde"
                             class="d-flex justify-content-end ml-auto logo_principal mr-auto"
                             id="icon"
+                            style="cursor: pointer"
+                            onclick="window.location.href = '{{url("/")}}'"
                         />
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav top-nav">
@@ -523,13 +543,15 @@
                 const drawer = document.getElementById('drawerSidebar');
         const openBtn = document.querySelector('.open-drawer-btn');
         const closeBtn = document.getElementById('closeDrawer');
-
+        const overlay = document.getElementById("overlay");
         openBtn.addEventListener('click', () => {
             drawer.classList.add('active');
+            overlay.classList.add("active");
         });
 
         closeBtn.addEventListener('click', () => {
             drawer.classList.remove('active');
+            overlay.classList.remove("active");
         });
 
     </script>

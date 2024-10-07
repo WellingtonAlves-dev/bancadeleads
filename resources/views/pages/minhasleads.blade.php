@@ -1,6 +1,13 @@
 @extends("templates.list")
 @section("title")
-Carteira de Leads
+<div class="d-flex justify-content-between mb-2">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Gestão de Leads</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Carteira de Leads</li>
+        </ol>
+    </nav>
+</div>
 @endsection
 @section("menu")
 <button type="button" onclick="$('#exportar_modal').modal('show')" class="btn btn-success float-right">

@@ -1,6 +1,14 @@
 @extends("templates.list")
 @section("title")
-Comprar Pacotes
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between mb-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Cliente</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Comprar Pacotes</li>
+            </ol>
+        </nav>
+    </div>
 @endsection
 @section("tabela")
 

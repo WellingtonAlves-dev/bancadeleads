@@ -127,14 +127,15 @@ $estados = array(
     flex-wrap: wrap;                     /* 2 */
     background-color: white !important;  /* 3 */
     padding: 15px;                       /* 4 */
-    margin: 10px;                        /* 5 */
+    margin-bottom: 10px;                        /* 5 */
+    margin-top: 10px;
     border-radius: 10px;                 /* 6 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 7 */
 }
 
 /* Seção do Logo */
 .lead-logo-2 {
-    flex: 0 0 150px;                     /* 8 */
+    width: 150px;
     height: 100%;                        /* 9 */
     border-radius: 10px 0 0 10px;       /* 10 */
     overflow: hidden;                    /* 11 */
@@ -146,7 +147,6 @@ $estados = array(
 .logo-image-3 {
     width: 100%;                        /* 15 */
     height: auto;                       /* 16 */
-    max-height: 120px;                  /* 17 */
     object-fit: cover;                  /* 18 */
 }
 
@@ -170,13 +170,24 @@ $estados = array(
     font-size: 12px;                   /* 30 */
 }
 
+.lead-time-5 .fas {
+    color:#943537;
+}
+
 /* Informações da Lead */
 .lead-info-6 {
     flex: 1;                            /* 31 */
     display: flex;                      /* 32 */
     flex-direction: column;             /* 33 */
     justify-content: center;            /* 34 */
-    align-items: flex-start;            /* 35 */
+}
+.lead-info-6 .lead-info-principal {
+    display: flex;
+    flex-direction: column;
+}
+.lead-info-6 .lead-info-secundaria {
+    margin-top: 40px;
+    gap: 12px;
 }
 
 .lead-plan-7 {
@@ -188,7 +199,9 @@ $estados = array(
 .lead-price-8 {
     font-weight: bold;                  /* 39 */
     font-size: 24px;                    /* 40 */
-    color: #4A5178;                     /* 41 */
+}
+.lead-price-8 {
+    font-size: 34px;
 }
 
 .lead-age-9, .lead-location-10, .lead-preference-11, .lead-cnpj-12 {
@@ -204,13 +217,19 @@ $estados = array(
 }
 
 .cta-button-14 {
-    background-color: rgb(74,81,120);   /* 47 */
-    color: white;                       /* 48 */
-    border: none;                       /* 49 */
-    border-radius: 5px;                /* 50 */
-    padding: 8px 15px;                  /* 51 */
-    cursor: pointer;                    /* 52 */
-    font-weight: bold;                  /* 53 */
+    background-color: transparent;      /* Fundo transparente */
+    color: #28a745;                     /* Cor do texto verde */
+    border: 2px solid #28a745;          /* Borda verde */
+    border-radius: 5px;                 /* Mantém a borda arredondada */
+    padding: 8px 15px;                  /* Mesma configuração de padding */
+    cursor: pointer;                    /* Mantém o cursor pointer */
+    font-weight: bold;                  /* Mantém o texto em negrito */
+    transition: background-color 0.3s ease; /* Transição suave no hover */
+}
+
+.cta-button-14:hover {
+    background-color: #28a745;          /* Fundo verde no hover */
+    color: white;                       /* Texto branco no hover */
 }
 /* Responsividade para dispositivos móveis */
 @media (max-width: 600px) {
@@ -248,12 +267,14 @@ $estados = array(
 </style>
 
 <!-- Page Heading -->
-<div class="d-flex justify-content-between mb-4">
-    <h1 class="h3 font-weight-bold">Comprar Leads</h1>
-    <br/>
-    <button class="btn filter-btn" data-toggle="modal" data-target="#filterModal">Filtrar Leads</button>
+<div class="d-flex justify-content-between mb-2">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Cliente</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Comprar Leads</li>
+        </ol>
+    </nav>
 </div>
-
 @if(Session::has("success_save"))
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     {{ Session::get("success_save") }}
@@ -268,6 +289,13 @@ $estados = array(
     {!! $avisos->aviso ?? "" !!}
 </div>
 @endif
+
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <button class="btn filter-btn" data-toggle="modal" data-target="#filterModal">Filtrar Leads</button>
+        <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Adicionar Saldo</button>
+    </div>
+</div>
 
 <!-- Main Content Area -->
 <div class="container lead_main_page" id="lead_main">
