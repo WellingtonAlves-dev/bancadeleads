@@ -126,11 +126,12 @@ $estados = array(
     display: flex;                        /* 1 */
     flex-wrap: wrap;                     /* 2 */
     background-color: white !important;  /* 3 */
-    padding: 15px;                       /* 4 */
+    padding-right: 15px;                       /* 4 */
     margin-bottom: 10px;                        /* 5 */
     margin-top: 10px;
     border-radius: 10px;                 /* 6 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 7 */
+    height: 200px;
 }
 
 /* Seção do Logo */
@@ -146,7 +147,7 @@ $estados = array(
 
 .logo-image-3 {
     width: 100%;                        /* 15 */
-    height: auto;                       /* 16 */
+    height: 100%;                       /* 16 */
     object-fit: cover;                  /* 18 */
 }
 
@@ -155,7 +156,7 @@ $estados = array(
     flex: 1;                            /* 19 */
     display: flex;                      /* 20 */
     flex-direction: column;             /* 21 */
-    padding-left: 15px;                /* 22 */
+    padding: 15px;                /* 22 */
     position: relative;                 /* 23 */
     background-color: white;           /* 24 */
     border-radius: 0 10px 10px 0;      /* 25 */
@@ -186,7 +187,6 @@ $estados = array(
     flex-direction: column;
 }
 .lead-info-6 .lead-info-secundaria {
-    margin-top: 40px;
     gap: 12px;
 }
 
@@ -212,7 +212,6 @@ $estados = array(
 
 /* Seção do Botão */
 .lead-button-13 {
-    margin-top: auto;                   /* 45 */
     text-align: right;                  /* 46 */
 }
 
@@ -231,36 +230,60 @@ $estados = array(
     background-color: #28a745;          /* Fundo verde no hover */
     color: white;                       /* Texto branco no hover */
 }
-/* Responsividade para dispositivos móveis */
-@media (max-width: 600px) {
+.grupo-infos-btn {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
+@media (max-width: 768px) {
     .lead-card-1 {
-        flex-direction: column;         /* 54 */
-        align-items: center;            /* 55 */
+        flex-direction: column;          /* Colocar os itens em coluna */
+        height: auto;                    /* Altura automática */
     }
-
+    
     .lead-logo-2 {
-        flex: 0 0 100%;                 /* 56 */
-        height: auto;                   /* 57 */
-    }
-
-    .logo-image-3 {
-        max-height: 100px;              /* 58 */
+        width: 100%;                     /* Logo ocupa 100% da largura */
+        height: 150px;                   /* Ajusta a altura do logo */
+        border-radius: 10px 10px 0 0;    /* Arredonda o topo */
     }
 
     .lead-details-4 {
-        padding-left: 0;                /* 59 */
-        padding-top: 10px;              /* 60 */
+        border-radius: 0 0 10px 10px;    /* Arredonda a parte inferior */
     }
 
-    .lead-time-5 {
-        position: static;               /* 61 */
-        text-align: right;              /* 62 */
-        margin-bottom: 10px;            /* 63 */
+    .lead-price-8 {
+        font-size: 28px;                 /* Diminui o tamanho do preço */
     }
-
-    .lead-button-13 {
+    .grupo-infos-btn {
+        justify-content: center;
+        flex-direction: column;
         margin-top: 12px;
-        text-align: center;              /* 64 */
+    }
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 480px) {
+    .lead-card-1 {
+        padding-right: 10px;             /* Reduz o padding lateral */
+    }
+    
+    .lead-time-5 {
+        font-size: 10px;                 /* Reduz o tamanho da fonte do horário */
+        top: 5px;                        /* Ajusta o espaçamento superior */
+        right: 5px;                      /* Ajusta o espaçamento lateral */
+    }
+    
+    .lead-price-8 {
+        font-size: 24px;                 /* Ajusta o tamanho do preço para caber */
+    }
+
+    .lead-plan-7 {
+        font-size: 18px;                 /* Ajusta o tamanho da fonte do plano */
+    }
+    
+    .cta-button-14 {
+        padding: 6px 10px;               /* Diminui o padding do botão */
+        font-size: 14px;                 /* Diminui o tamanho do texto */
     }
 }
 
