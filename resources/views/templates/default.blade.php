@@ -102,6 +102,22 @@
             padding-left: 15px;
         }
 
+        body {
+            transform: scale(0.75);
+            transform-origin: top left;
+            width: 133.33%;
+            height: 133.33%;
+        }
+        *[style*="100vw"] {
+            width: calc(100vw / 0.75);
+        }
+
+        /* Ajusta todos os elementos que têm altura de 100vh */
+        *[style*="100vh"] {
+            height: calc(100vh / 0.75);
+        }
+
+
     </style>
 </head>
 
