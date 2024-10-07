@@ -1,13 +1,7 @@
-@extends("templates.default")
+@extends("templates.list")
 @section("content")
     <style>
-        body {
-            background-color: #f9f9f9;
-            font-family: Arial, sans-serif;
-            padding: 0;
-            margin: 0;
-        }
-        .container {
+        .container-central {
             max-width: 100%;
             margin: 20px auto;
             padding: 15px;
@@ -82,9 +76,7 @@
             }
         }
     </style>
-</head>
-<body>
-    <div class="container">
+    <div class="container container-central">
         <h2>
             Adicionar Saldo
         </h2>
