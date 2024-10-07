@@ -824,7 +824,10 @@
                     submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
                 });
             });
-
+            overlay.addEventListener("click", () => {
+                drawer.classList.remove("active");
+                overlay.classList.remove("active");
+            });
 
         });
     </script>
