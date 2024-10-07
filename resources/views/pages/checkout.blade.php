@@ -91,7 +91,8 @@
         </h2>
 
         <p class="copy-text">
-            Aproveite esta oportunidade para adicionar crédito à sua conta e aproveitar nossas ofertas. Com saldo disponível, você pode realizar suas compras com facilidade e desbloquear vantagens exclusivas!
+            Adicione o crédito que desejar a sua conta
+            para poder aproveitar as nossas leads disponíveis na plataforma.
         </p>
 
         <div class="form-group">

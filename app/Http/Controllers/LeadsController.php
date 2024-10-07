@@ -25,7 +25,6 @@ use Maatwebsite\Excel\Facades\Excel;
 class LeadsController extends Controller
 {
     public function index(Request $request) {
-
         $avisos = Avisos::where("ativo", true)->first();
 
         $tipos = Tipos::where("ativo", true)->get();
@@ -87,14 +86,14 @@ class LeadsController extends Controller
             $leads = $leads->where("leads.ativo", true);
             $leads = $leads->whereNull("minhas_leads.id");
         }
-        if($request->ddd && $request->ddd != "todos") {
-            $leads = $leads->where("ddd", $request->ddd);
+        if(is_array($request->ddd) && count($request->ddd) > 0) {
+            $leads = $leads->whereIn("ddd", $request->ddd);
         }
-        if($request->tipo && $request->tipo != "todos") {
-            $leads = $leads->where("tipo_id", $request->tipo);
+        if(is_array($request->tipo) && count($request->tipo) > 0) {
+            $leads = $leads->whereIn("tipo_id", $request->tipo);
         }
-        if($request->plano && $request->plano != "todos") {
-            $leads = $leads->where("plano_id", $request->plano);
+        if(is_array($request->plano) && count($request->plano) > 0) {
+            $leads = $leads->whereIn("plano_id", $request->plano);
         }
         if($request->search && $request->search != "") {
             $leads = $leads->where("leads.id", $request->search)

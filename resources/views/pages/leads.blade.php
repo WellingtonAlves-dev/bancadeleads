@@ -271,7 +271,7 @@ $estados = array(
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Área do Cliente</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Comprar Leads</li>
+          <li class="breadcrumb-item active" aria-current="page">Comprar Lead Avulsa</li>
         </ol>
     </nav>
 </div>
@@ -320,27 +320,24 @@ $estados = array(
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="ddd_choice">Selecione o DDD</label>
-                        <select class="form-control" id="ddd_choice">
-                            <option value="todos">Todos</option>
+                        <label for="ddd_choice">Selecione o(s) DDD(s)</label>
+                        <select class="form-control select2-multiple" id="ddd_choice" multiple="multiple">
                             @foreach($estados as $key => $estado)
                                 <option value="{{$key}}">{{$estado}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tipo_choice">Selecione o tipo de lead</label>
-                        <select class="form-control" id="tipo_choice">
-                            <option value="todos">Todas</option>
+                        <label for="tipo_choice">Selecione o(s) tipo(s) de lead</label>
+                        <select class="form-control select2-multiple" id="tipo_choice" multiple="multiple">
                             @foreach($tipos as $tipo)
                                 <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="plano_choice">Selecione o plano</label>
-                        <select class="form-control" id="plano_choice">
-                            <option value="todos">Todos</option>
+                        <label for="plano_choice">Selecione o(s) plano(s)</label>
+                        <select class="form-control select2-multiple" id="plano_choice" multiple="multiple">
                             @foreach($planos as $plano)
                                 <option value="{{$plano->id}}">{{$plano->nome}}</option>
                             @endforeach
@@ -349,15 +346,20 @@ $estados = array(
                 </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="clearFilters()">Limpar Filtros</button>
                 <button type="button" class="btn filter-btn w-100" onclick="filter(true)">Aplicar Filtro</button>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
 
 @section("script")
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<!-- JS Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
 <script>
     let page = 0;
     let limit = 20;
@@ -436,6 +438,18 @@ $estados = array(
     }
 
 
+$(document).ready(function() {
+    $('.select2-multiple').select2({
+        width: '100%', // Faz com que o select use toda a largura
+        placeholder: 'Selecione uma ou mais opções', // Placeholder para as seleções múltiplas
+        allowClear: true // Adiciona o botão de limpar
+    });
+});
+
+// Função para limpar os filtros
+function clearFilters() {
+    $('.select2-multiple').val(null).trigger('change'); // Limpa as seleções
+}
 
     setInterval(() => {
         filter();

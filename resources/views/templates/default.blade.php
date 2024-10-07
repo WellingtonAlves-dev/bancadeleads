@@ -429,41 +429,39 @@
                 <!-- Pacotes e Leads com Submenu -->
                 <li class="nav-item has-submenu">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-box-open"></i> Pacotes e Leads <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                        <i class="fas fa-box-open"></i> Comprar Leads <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
                     </a>
                     <ul class="submenu">
                         @if(Auth::user()->role == "admin")
                             <li><a href="{{url("/leads")}}">Leads Disponíveis</a></li>
                         @else
-                            <li><a href="{{url("/leads")}}">Comprar Leads</a></li>
+                            <li><a href="{{url("/leads")}}">Comprar Lead Avulsa</a></li>
                         @endif
-                        <li><a href="{{url("/pacotes")}}">Pacotes de Leads</a></li>
-                        <li><a href="{{url("/minhas/leads")}}">Minhas Leads</a></li>
+                        <li><a href="{{url("/pacotes")}}">Comprar Pacote de Leads</a></li>
+                        <li><a href="{{url("/minhas/leads")}}">Leads Que Comprei</a></li>
                     </ul>
                 </li>
         
                 @if(Auth::user()->role !== "admin")
                     <!-- Reposições de Leads com Submenu -->
-                    <li class="nav-item has-submenu">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-exchange-alt"></i> Reposições de Leads <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url("/reposicoes")}}">
+                            <i class="fas fa-exchange-alt"></i> Reposições Solicitadas
                         </a>
-                        <ul class="submenu">
-                            <li><a href="{{url("/reposicoes")}}">Reposições Solicitadas</a></li>
-                        </ul>
                     </li>
                 @endif
         
                 @if(Auth::user()->role === "user")
                     <!-- Gestão de Agentes com Submenu -->
-                    <li class="nav-item has-submenu">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-user-tie"></i> Gestão de Agentes <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url("/corretores")}}">
+                            <i class="fas fa-user-tie"></i> Meus Corretores
                         </a>
-                        <ul class="submenu">
-                            <li><a href="{{url("/corretores")}}">Meus Agentes</a></li>
-                            <li><a href="{{url("/meus/extratos")}}">Extratos Financeiros</a></li>
-                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url("/meus/extratos")}}">
+                            <i class="fas fa-file-invoice"></i> Meu Extrato Financeiro
+                        </a>
                     </li>
                 @endif
         
@@ -491,6 +489,7 @@
                             <li><a href="{{url("/admin/marketing/mobile")}}">Campanhas Mobile</a></li>
                             <li><a href="{{url("/admin/marketing")}}">Marketing Geral</a></li>
                             <li><a href="{{url("/admin/marketing/templates")}}">Modelos de Marketing</a></li>
+                            <li><a href="{{url("/admin/avisos")}}">Avisos</a></li>
                         </ul>
                     </li>
                 @endif
@@ -652,7 +651,7 @@
                         <a style="color: black;" target="_blank" href="https://indicasaude.com.br/termos.html">Termos e a política de privacidade</a>
                     </div>
                     <div class="copyright text-center mt-5">
-                        <span>® INDICA SAÚDE. Desenvolvido por <strong><a style="color: black;" target="_blank" href="https://welltech.digital/">WELLTECH</strong> todos os direitos reservados.</span>
+                        <span>&copy; {{date("Y")}} INDICA SAÚDE. Todos os direitos reservados.</span>
                     </div>
                 </div>
             </footer>

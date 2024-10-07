@@ -28,13 +28,13 @@
     </div>
 
                 <!-- Footer -->
-            <footer class="sticky-footer">
+            {{-- <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto ">
                         <span>Desenvolvidor por <strong><a target="_blank"  href="https://welltech.digital/">WELLTECH</a></strong></span>
                     </div>
                 </div>
-            </footer>
+            </footer> --}}
             <!-- End of Footer -->
 
     <!-- Bootstrap core JavaScript-->

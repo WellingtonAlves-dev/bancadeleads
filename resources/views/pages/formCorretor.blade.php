@@ -3,12 +3,12 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Gerenciamento de Leads</a></li>
-      <li class="breadcrumb-item"><a href="{{url("/corretores")}}">Meus Agentes</a></li>
+      <li class="breadcrumb-item"><a href="{{url("/corretores")}}">Meus Corretores</a></li>
       <li class="breadcrumb-item active" aria-current="page">
             @if(Request::is("corretores/editar/*"))
-                Editar Agente {{$corretor->nome}}
+                Editar Corretor {{$corretor->nome}}
             @else
-                Novo Agente
+                Novo Corretor
             @endif
       </li>
     </ol>
