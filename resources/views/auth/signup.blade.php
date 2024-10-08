@@ -97,7 +97,7 @@
       </div>
       <div class="modal-body" style="max-height: 300px; overflow: auto;">
         <p>
-            Termo de Uso do Site "INDICA SÁUDE"
+            Termo de Uso do Site "INDICA SAÚDE"
 
             
         </p>

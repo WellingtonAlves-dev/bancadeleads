@@ -115,7 +115,7 @@
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
               <a href="https://www.indicasaude.com.br/" target="_blank" style="display: inline-block;">
-                <img src="https://www.indicasaude.com.br/images/logo.png" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
+                <img src="https://www.indicasaude.com.br/images/logo.png" alt="Logo" border="0" width="120" style="display: block; width: 120px; max-width: 120px; min-width: 120px;">
               </a>
             </td>
           </tr>
@@ -234,10 +234,10 @@
               <p style="margin: 0;">
                 Prezado(a),
                 <br/>
-                Este e-mail é para informá-lo(a) que houve uma tentativa de recuperação de senha na INDICA SÁUDE utilizando este endereço de e-mail
+                Este e-mail é para informá-lo(a) que houve uma tentativa de recuperação de senha na INDICA SAÚDE utilizando este endereço de e-mail
                 <br/>
                 Atenciosamente,
-                Equipe da INDICA SÁUDE              
+                Equipe da INDICA SAÚDE              
               </p>
             </td>
           </tr>

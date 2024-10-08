@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>INDICA SÁUDE</title>
+    <title>INDICA SAÚDE</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset("assets")}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -300,7 +300,7 @@
             <!-- Nav Items -->
             <ul class="navbar-nav">
                 @if(Auth::user()->role == "user")
-                    <li class="section-title">Área do Cliente</li>
+                    <li class="section-title">Àrea do Cliente</li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url("/checkout")}}">
                             <i class="fas fa-wallet"></i> Adicionar Crédito
@@ -645,7 +645,7 @@
                         <p>
 
 
-                            Termo de Uso do Site "INDICA SAUDE"
+                            Termo de Uso do Site "INDICA SAÚDE"
 
                         </p>
 

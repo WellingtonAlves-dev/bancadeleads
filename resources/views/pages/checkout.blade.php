@@ -80,7 +80,7 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Área do Cliente</a></li>
+          <li class="breadcrumb-item"><a href="{{url("/")}}">Àrea do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Adicionar Crédito</li>
         </ol>
     </nav>
