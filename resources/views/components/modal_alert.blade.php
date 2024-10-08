@@ -85,7 +85,7 @@
               <input type="hidden" id="corretor_id_alert" value="{{$user_id ?? null}}"/>
               <input type="hidden" id="corretor_alert" value="{{$user ?? null}}"/>
               <div class="alert {{empty($alert_type) ? "bg-danger" : $alert_type}} alert_message_style">
-                  {{$msg}}
+                  {!! $msg !!}
               </div>
           </div>
           <div class="modal-footer modal_footer_alert">

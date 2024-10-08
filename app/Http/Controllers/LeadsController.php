@@ -269,7 +269,7 @@ class LeadsController extends Controller
         return view("components.modal_alert",
         [
             "title" => "Compra Efetuada!!",
-            "msg" => "Agora você pode visualizar sua lead em `Leads que eu comprei`",
+            "msg" => "Agora você pode visualizar sua lead em `Leads que Comprei`",
             "alert_type" => "bg-success",
             "user_id" => $user_id,
             "user" => Auth::user()->name
