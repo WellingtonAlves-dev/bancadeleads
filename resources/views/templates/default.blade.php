@@ -136,6 +136,10 @@
             padding-left: 15px;
         }
     
+        td a  {
+            color: white !important;
+        }
+
         /* body {
             transform: scale(0.75);
             transform-origin: top left;
@@ -470,13 +474,19 @@
         
                 @if(Auth::user()->role === "admin")
                     <!-- Administração com Submenu -->
-                    <li class="nav-item has-submenu" style="margin-top: 50px">
+                    <li class="nav-item" style="margin-top: 50px">
+                        <a class="nav-link" href="{{url("/")}}">
+                            <i class="fas fa-home"></i> Página Inicial
+                        </a>
+                    </li>
+                    <li class="nav-item has-submenu">
                         <a class="nav-link" href="#">
                             <i class="fas fa-cogs"></i> Administração <i class="fa fa-chevron-down ml-3" aria-hidden="true"></i>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{url("/leads")}}">Leads Avulsas</a></li>
                             <li><a href="{{url("/admin/pacotes")}}">Pacotes de Leads</a></li>
+                            <li><a href="{{url("/admin/reposicoes")}}">Reposições Solicitadas</a></li>
                             <li><a href="{{url("/admin/planos")}}">Gerenciar Planos</a></li>
                             <li><a href="{{url("/admin/tipos")}}">Tipos</a></li>
                             <li><a href="{{url("/admin/users")}}">Usuários Registrados</a></li>

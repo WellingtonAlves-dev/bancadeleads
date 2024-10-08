@@ -61,8 +61,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Escolha o DDD</label>
-                    <select onchange="filter()" class="form-control" id="ddd_choice">
-                        <option value="todos">Todos</option>
+                    <select onchange="filter()" class="form-control select2-multiple" id="ddd_choice" multiple="multiple">
                         @for($i = 1; $i < 100; $i++)
                             <option value="{{$i}}">DDD ({{$i}})</option>
                         @endfor
@@ -72,8 +71,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Escolha o tipo de lead</label>
-                    <select onchange="filter()" class="form-control" id="tipo_choice">
-                        <option value="todos">Todas</option>
+                    <select onchange="filter()" class="form-control select2-multiple" id="tipo_choice" multiple="multiple">
                         @foreach($tipos as $tipo)
                             <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
                         @endforeach
@@ -83,8 +81,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Escolha o plano de lead</label>
-                    <select onchange="filter()" class="form-control" id="plano_choice">
-                        <option value="todos">Todas</option>
+                    <select onchange="filter()" class="form-control select2-multiple" id="plano_choice" multiple="multiple">
                         @foreach($planos as $plano)
                             <option value="{{$plano->id}}">{{$plano->nome}}</option>
                         @endforeach
@@ -95,24 +92,14 @@
         <div style="height: 65vh;overflow: hidden;overflow-y: auto;">
             
             <div class="row justify-content-center" id="lead_main">
-                <table class="table table-bordered" style="font-size: 11px">
-                    <thead>
-                        <th>#</th>
-                        <th>TIPO</th>
-                        <th>PREÇO</th>
-                        <th>CNPJ</th>
-                        <th>PLANO</th>
-                        <th>REGIÃO</th>
-                        <th>PERFIL</th>
-                        <th>Adicionado há</th>
-                    </thead>
-                    <tbody id="tbody_main">
-
-                    </tbody>
-                </table>
-                <div class="row w-100 justify-content-center">
-                        <button class="btn btn-primary" onclick="carrerarMaisLeads()">Carregar mais leads</button>
-                </div>
+                <div class="container mt-4" id="lead_main">
+                    <div class="row" id="card_container">
+                        <!-- Os cards serão inseridos dinamicamente aqui -->
+                    </div>
+                    <div class="row w-100 justify-content-center mt-3">
+                        <button class="btn btn-primary" onclick="carregarMaisLeads()">Carregar mais leads</button>
+                    </div>
+                </div>                
             </div>
 
 
@@ -149,6 +136,11 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/semantic.min.css"/>
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css"/>
+
+<!-- JS Select2 -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
     let limit = 20;
@@ -256,37 +248,54 @@
                 $("#loading_spinner_lead").css("display", "none");
                 $("#lead_main").css("display", "");
                 if(res?.leads) {
-                    let tabela = $("#tbody_main");
-                    if(!paginacao) {
-                        tabela.html("");
-                    }
-                    let html = tabela.html();
-                    res.leads.map(lead => {
-                        html += `
-                            <tr>
-                                <td>
-                                    <input type='checkbox' id="checkbox_${lead.id}" onclick="selecionarLead('${lead.id}', '${lead.preco}')"/>    
-                                </td>
-                                <td>${lead?.tipo?.nome}</td>
-                                <td>R$ ${lead?.preco}</td>
-                                <td>${lead?.cnpj ? "SIM" : "NÃO"}</td>
-                                <td>${lead?.plano?.nome}</td>
-                                <td>${lead?.ddd}</td>
-                                <td>${lead?.idade}</td>
-                                <td>${lead?.horario_partida}</td>
-                            </tr>
-                        `;
-                    });
-                    tabela.html(html);
-                    // marcar
-                    desabilitarButtons();
-                    LEADS_SELECIONADAS.map(lead => {
-                        let checkbox = $(`#checkbox_${lead.id}`);
-                        checkbox.prop("checked", true);
-                        checkbox.prop("disabled", false);
-                    });
-                    gerarTotal();
-                }
+    let cardContainer = $("#card_container");
+    if(!paginacao) {
+        cardContainer.html(""); // Limpa o container de cards se não estiver paginando
+    }
+    let html = cardContainer.html();
+    res.leads.map(lead => {
+        html += `
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <!-- Checkbox para selecionar o lead -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox_${lead.id}" onclick="selecionarLead('${lead.id}', '${lead.preco}')">
+                            <label class="form-check-label" for="checkbox_${lead.id}">
+                                Selecionar Lead
+                            </label>
+                        </div>
+
+                        <!-- Informações do lead -->
+                        <h5 class="card-title">Lead #${lead.id}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Tipo:</strong> ${lead?.tipo?.nome || ''}</li>
+                            <li class="list-group-item"><strong>Preço:</strong> R$ ${lead?.preco || '0.00'}</li>
+                            <li class="list-group-item"><strong>CNPJ:</strong> ${lead?.cnpj ? "SIM" : "NÃO"}</li>
+                            <li class="list-group-item"><strong>Plano:</strong> ${lead?.plano?.nome || ''}</li>
+                            <li class="list-group-item"><strong>Deseja cotar:</strong> ${lead?.plano?.nome || ''}</li>
+                            <li class="list-group-item"><strong>Região (DDD):</strong> ${lead?.ddd || ''}</li>
+                            <li class="list-group-item"><strong>Idade:</strong> ${lead?.idade || ''}</li>
+                            <li class="list-group-item"><strong>Horário Partida:</strong> ${lead?.horario_partida || ''}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    cardContainer.html(html); // Atualiza o container com os novos cards
+
+    // Marcar os checkboxes
+    desabilitarButtons();
+    LEADS_SELECIONADAS.map(lead => {
+        let checkbox = $(`#checkbox_${lead.id}`);
+        checkbox.prop("checked", true);
+        checkbox.prop("disabled", false);
+    });
+
+    gerarTotal();
+}
+
             }
         })
     }
@@ -320,6 +329,14 @@
         offset += limit;
         filter(true);
     }
+
+    $(document).ready(function() {
+        $('.select2-multiple').select2({
+            width: '100%', // Faz com que o select use toda a largura
+            placeholder: 'Selecione uma ou mais opções', // Placeholder para as seleções múltiplas
+            allowClear: true // Adiciona o botão de limpar
+    })});
+
 
     // setInterval(() => {
     //     filter();

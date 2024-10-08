@@ -131,12 +131,12 @@ $estados = array(
     margin-top: 10px;
     border-radius: 10px;                 /* 6 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 7 */
-    height: 200px;
+    height: 250px;
 }
 
 /* Seção do Logo */
 .lead-logo-2 {
-    width: 150px;
+    width: 200px;
     height: 100%;                        /* 9 */
     border-radius: 10px 0 0 10px;       /* 10 */
     overflow: hidden;                    /* 11 */
@@ -259,18 +259,28 @@ $estados = array(
         flex-direction: column;
         margin-top: 12px;
     }
+
+    .lead-time-5 {
+        font-size: 16px;                 /* Reduz o tamanho da fonte do horário */
+        display: flex;
+        justify-content: center;
+        position: relative;
+        text-align: center;
+        margin-bottom: 5px !important;
+        margin-top: 0px;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    .lead-info-6 {
+        margin-bottom: 15px;
+    }
 }
 
 /* Ajustes para dispositivos móveis */
 @media (max-width: 480px) {
     .lead-card-1 {
         padding-right: 10px;             /* Reduz o padding lateral */
-    }
-    
-    .lead-time-5 {
-        font-size: 10px;                 /* Reduz o tamanho da fonte do horário */
-        top: 5px;                        /* Ajusta o espaçamento superior */
-        right: 5px;                      /* Ajusta o espaçamento lateral */
     }
     
     .lead-price-8 {

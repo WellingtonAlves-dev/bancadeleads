@@ -27,6 +27,9 @@
                         <i class="far fa-user"></i>
                          {{$lead->idade}}
                     </span>
+                    <strong>
+                        Desejar cotar: {{$lead->plano->nome}}
+                    </strong>
                 </div>
                 <div class="grupo-infos-btn">
                     <div>
