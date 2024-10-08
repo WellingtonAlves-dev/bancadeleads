@@ -275,12 +275,17 @@ $estados = array(
     .lead-info-6 {
         margin-bottom: 15px;
     }
+    .lead-card-1 {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+    }
 }
 
 /* Ajustes para dispositivos móveis */
 @media (max-width: 480px) {
     .lead-card-1 {
-        padding-right: 10px;             /* Reduz o padding lateral */
+        padding-right: 0;             /* Reduz o padding lateral */
     }
     
     .lead-price-8 {

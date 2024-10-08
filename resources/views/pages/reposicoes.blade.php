@@ -45,7 +45,7 @@
                                             {{ $reposicao->status }}
                                         </td>
                                         <td>
-                                            <button onclick="viewReposicao('{{ $reposicao->id }}', `{{ $reposicao->descricao }}`, '{{ $reposicao->lead_id }}', '{{ $reposicao->solicitante }}', '{{ $reposicao->user_name }}')" class="btn btn-secondary btn-sm">
+                                            <button onclick="viewReposicao('{{ $reposicao->id }}', `{{ $reposicao->descricao }}`, '{{ $reposicao->lead_id }}', '{{ $reposicao->solicitante }}', '{{ $reposicao->user_name }}')" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                         </td>

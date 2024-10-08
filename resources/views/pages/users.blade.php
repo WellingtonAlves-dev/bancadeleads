@@ -62,7 +62,7 @@
                 <td>{{ucwords($user->role)}}</td>
                 <td>{!!$user->user_master ? "<a href='".url('admin/users/editar/'.$user->user_master)."'>{$user->user_master}</a>" : "Usuário não é dependente"!!}</td>
                 <td>
-                    <a href="{{url("/admin/users/editar/".$user->id)}}" class="btn btn-light btn-sm">
+                    <a href="{{url("/admin/users/editar/".$user->id)}}" class="btn btn-primary btn-sm">
                         <i class="fas fa-pen"></i>
                     </a>
                 </td>
