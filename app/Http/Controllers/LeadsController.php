@@ -345,7 +345,7 @@ class LeadsController extends Controller
             if($preco != 0) {
                 $preco = str_replace("R$", "", $preco);
                 if(is_numeric($preco)) {
-                    $preco = $preco - (($preco * 5) / 100);
+                    $preco = $preco + (($preco * 5) / 100);
                 }
             } else {
                 $preco = 9.5;
@@ -375,7 +375,7 @@ class LeadsController extends Controller
             }
 
             $data = [
-                "ativo" => false,
+                "ativo" => true,
                 "preco" => $preco,
                 "dias_disponivel" => 1,
                 "qtd_vidas" => 1,
@@ -415,17 +415,19 @@ class LeadsController extends Controller
 
     private function excluirLeadExterna($id_global)
     {
-        $client = new Client();
+        $urls = ["https://mastersaudeleads.com.br/sistema/api/", "https://portalleads.com.br/app/api/"];
+        foreach ($urls as $key => $url) {
+            try {
+                $client = new Client();
 
-        // URL do servidor externo com o token secreto
-        $secretToken = 'welltechparasempre';
-        $url = 'https://mastersaudeleads.com.br/sistema/api/lead/excluir/'. $id_global .'?token=' . $secretToken;
-
-        $response = $client->post($url);
-
-        if ($response->getStatusCode() != 200) {
-            // Lidar com o erro de acordo com sua lógica
-            throw new \Exception("Erro ao excluir a lead do servidor externo.");
+                // URL do servidor externo com o token secreto
+                $secretToken = 'welltechparasempre';
+                $url = $url.'lead/excluir/'. $id_global .'?token=' . $secretToken;
+        
+                $client->post($url);        
+            } catch(Exception $e) {
+                // tratar erro
+            }
         }
     }
 }
