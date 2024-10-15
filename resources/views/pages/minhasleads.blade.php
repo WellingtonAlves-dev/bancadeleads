@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{url("/")}}">Àrea do Cliente</a></li>
+          <li class="breadcrumb-item"><a href="{{url("/")}}">Área do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Leads Que Comprei</li>
         </ol>
     </nav>
@@ -169,7 +169,7 @@
                             @elseif($lead->preco > ($saldoReposicao ?? 0))
                                 <span class="badge bg-danger me-2">Limite excedido</span>
                             @elseif($blockedReposicao)
-                                <span class="badge bg-secondary me-2">Prazo expirado</span>
+                                <span class="badge bg-secondary text-white me-2" style="color: white !important">Prazo expirado</span>
                             @elseif(($lead->statusLeadFria ?? false))
                                 <span class="badge bg-info me-2">Leads frias não são contestáveis</span>
                             @endif

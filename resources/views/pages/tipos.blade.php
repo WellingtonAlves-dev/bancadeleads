@@ -30,7 +30,7 @@
                 <td>{{$tipo->ativo ? "Ativo" : "Inativo"}}</td>
                 <td>{{$tipo->nome}}</td>
                 <td>
-                    <a href="{{url("admin/tipos/editar/".$tipo->id)}}" class="btn btn-light btn-sm">
+                    <a href="{{url("admin/tipos/editar/".$tipo->id)}}" class="btn btn-sm">
                         <i class="fas fa-pen"></i>
                     </a>
                 </td>

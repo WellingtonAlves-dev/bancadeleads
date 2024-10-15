@@ -36,7 +36,7 @@ Planos
                 <td>{{$plano->telefone ?? "Não informado"}}</td>
                 <td>{{$plano->email ?? "Não informado"}}</td>
                 <td>
-                    <a href="{{url("admin/planos/editar/".$plano->id)}}" class="btn btn-light btn-sm">
+                    <a href="{{url("admin/planos/editar/".$plano->id)}}" class="btn btn-sm">
                         <i class="fas fa-pen"></i>
                     </a>
                 </td>

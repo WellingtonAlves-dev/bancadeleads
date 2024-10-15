@@ -71,6 +71,10 @@
     }
 }
 
+.bg-success {
+    background-color: #1c2541;
+}
+
 </style>
 <div class="modal modal_alert" tabindex="-1" role="dialog" id="modal_alert">
   <div class="modal-dialog modal_dialog_small" role="document">

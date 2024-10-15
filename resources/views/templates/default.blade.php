@@ -291,7 +291,7 @@
             <!-- Nav Items -->
             <ul class="navbar-nav">
                 @if(Auth::user()->role == "user")
-                    <li class="section-title">Àrea do Cliente</li>
+                    <li class="section-title">Área do Cliente</li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url("/checkout")}}">
                             <i class="fas fa-wallet"></i> Adicionar Crédito
@@ -539,7 +539,7 @@
 
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="mr-2 d-none d-lg-inline  small">
+                                            <span class="mr-2 d-none d-lg-inline  small" style="color: black !important">
                                                 <i class="fas fa-user"></i>
                                                 {{ucwords(Auth::user()->name)}}
                                             </span>
@@ -574,7 +574,7 @@
 
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="mr-2 d-none d-lg-inline  small">
+                                            <span class="mr-2 d-none d-lg-inline  small" style="color: black !important">
                                                 <i class="fas fa-user"></i>
                                                 {{ucwords(Auth::user()->name)}}
                                             </span>
