@@ -357,7 +357,7 @@ class LeadsController extends Controller
                 $plano_id = $plano->id;
             } else {
                 $plano_id = Planos::create([
-                    "ativo" => true,
+                    "ativo" => false,
                     "nome" => strtoupper($row["plano"]),
                     "telefone" => "",
                     "email" => ""
