@@ -22,7 +22,7 @@ class Saldos extends Model
         $this->saldo_atual = $saldoUser + $valor;
         $this->saldo_anterior = $saldoUser;
 
-        $valor_saldo_reposicao = ($valor * 40) / 100;
+        $valor_saldo_reposicao = ($valor * 30) / 100;
         $this->tipo = "entrada";
         $this->user_id = $user_id;
         $this->valor = $valor;
@@ -74,7 +74,7 @@ class Saldos extends Model
 
         if(!empty($saldo_reposicao)) {
             if($saldo_reposicao->saldo_reposicao === null) {
-                $valor_saldo_reposicao = ( $saldo_reposicao->valor * 40 ) / 100;
+                $valor_saldo_reposicao = ( $saldo_reposicao->valor * 30 ) / 100;
                 $saldo_reposicao->saldo_reposicao = $valor_saldo_reposicao;
                 $saldo_reposicao->save();
             } else {
