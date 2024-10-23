@@ -60,6 +60,9 @@
             .drawer {
                 width: 40%;
             }
+            #sidebarToggleTop {
+                font-size: 28px;
+            }
         }
     
         .drawer.active {
