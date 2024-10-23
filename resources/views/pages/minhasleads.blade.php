@@ -131,16 +131,17 @@
                     
                     <div class="flex-grow-1">
                         <h5 class="card-title mb-1">ID: {{$lead->id}}</h5>
+                        <p class="card-text mb-1">Data de Aquisição: {{date("d/m/Y H:i:s", strtotime($lead->dataAquisicao))}}</p>
                         @if(!Auth::user()->vinculado)
                             <p class="card-text mb-1">Valor: R$ {{ number_format($lead->preco, 2, ",", ".") }}</p>
                         @endif
-                        <p class="card-text mb-1">Idade: {{$lead->idade}}</p>
-                        <p class="card-text mb-1">Telefone: ({{$lead->ddd}}) {{$lead->telefone}}</p>
-                        <p class="card-text mb-1">E-mail: {{$lead->email}}</p>
-                        <p class="card-text mb-1">Nome: {{$lead->nome_lead}}</p>
-                        <p class="card-text mb-1">Plano: {{$lead->plano->nome}}</p>
                         <p class="card-text mb-1">Categoria: {{$lead->tipo->nome}}</p>
-                        <p class="card-text mb-1">Data de Aquisição: {{date("d/m/Y H:i:s", strtotime($lead->dataAquisicao))}}</p>
+                        <p class="card-text mb-1">Nome: {{$lead->nome_lead}}</p>
+                        <p class="card-text mb-1">E-mail: {{$lead->email}}</p>
+                        <p class="card-text mb-1">Telefone: ({{$lead->ddd}}) {{$lead->telefone}}</p>
+                        <p class="card-text mb-1">Idade: {{$lead->idade}}</p>
+                        <p class="card-text mb-1">Plano: {{$lead->plano->nome}}</p>
+                        <p class="card-text mb-1">Informações Adicionais: {{$lead->extra ?? ""}}</p>
                         <p class="card-text mb-1">
                             Corretor:
                             @if($lead->corretor)
@@ -151,7 +152,6 @@
                                 Sem corretor
                             @endif
                         </p>
-                        <p class="card-text mb-1">Informações Adicionais: {{$lead->extra ?? ""}}</p>
                     </div>
                 </div>
                 
