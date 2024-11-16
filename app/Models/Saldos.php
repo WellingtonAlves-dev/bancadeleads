@@ -31,13 +31,14 @@ class Saldos extends Model
             $this->saldo_reposicao = $valor_saldo_reposicao;
         }
         $this->save();
-        
-        $saldoReposicaoAtual = $this->saldoReposicaoAnterior($user_id, $this->id);
-        if($saldoReposicaoAtual === null) {
-            $saldoReposicaoAtual = 0;
+        if(!$ignorar_saldo_reposicao) {
+            $saldoReposicaoAtual = $this->saldoReposicaoAnterior($user_id, $this->id);
+            if($saldoReposicaoAtual === null) {
+                $saldoReposicaoAtual = 0;
+            }
+            $saldoReposicaoAtual += $valor_saldo_reposicao;
+            $this->atualizarSaldoReposicaoByUser($user_id, $saldoReposicaoAtual);    
         }
-        $saldoReposicaoAtual += $valor_saldo_reposicao;
-        $this->atualizarSaldoReposicaoByUser($user_id, $saldoReposicaoAtual);
 
     }
     public function gerarSaida($user_id, $valor, $observacao, $lead_id = null, $lead_fria = false) {

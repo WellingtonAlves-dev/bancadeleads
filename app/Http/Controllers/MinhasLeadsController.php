@@ -19,15 +19,29 @@ class MinhasLeadsController extends Controller
         $minhasLeads = Lead::select(
             "leads.*", "saldos.valor as preco", "minhas_leads.created_at as dataAquisicao", 
             "reposicaos.id as reposicaoID", "reposicaos.status as reposicaoStatus", "saldos.lead_fria as statusLeadFria"
-        )
-        ->join("minhas_leads", function($join) {
-            $join->on("minhas_leads.id_lead", "=", "leads.id")
-                 ->where("minhas_leads.id_user", "=", Auth::user()->id);
-        })
-        ->join("saldos", function($join) {
-            $join->on("saldos.lead_id", "=", "leads.id")
-                 ->where("saldos.user_id", "=", Auth::user()->id);
-        })
+        );
+
+        if(!Auth::user()->vinculado) {
+            $minhasLeads = $minhasLeads
+            ->join("minhas_leads", function($join) {
+                $join->on("minhas_leads.id_lead", "=", "leads.id")
+                     ->where("minhas_leads.id_user", "=", Auth::user()->id);
+            })
+            ->join("saldos", function($join) {
+                $join->on("saldos.lead_id", "=", "leads.id")
+                     ->where("saldos.user_id", "=", Auth::user()->id);
+            });
+        } else {
+            $minhasLeads = $minhasLeads
+            ->join("minhas_leads", function($join) {
+                $join->on("minhas_leads.id_lead", "=", "leads.id");
+            })
+            ->join("saldos", function($join) {
+                $join->on("saldos.lead_id", "=", "leads.id");
+            })
+            ->where("minhas_leads.id_user", Auth::user()->id);
+        }
+        $minhasLeads = $minhasLeads
         ->leftJoin("reposicaos", function($join) {
             $join->on("reposicaos.lead_id", "=", "leads.id")
                  ->where("reposicaos.solicitante", "=", Auth::user()->id);
