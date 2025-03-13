@@ -17,7 +17,7 @@ $totalLeadsDisponivel = 0;
 
 @if($totalLeadsDisponivel == 0)
     <h4 style="text-align: center; margin-top: 25px;">Infelizmente no momento as leads para este DDD
-        já foram todas vendidas, fique atento que em breve entrão mais leads no horário
+        já foram todas vendidas, fique atento que em breve entrarão mais leads no horário
         de funcionamento da plataforma
     </h4>
 @endif
