@@ -234,10 +234,10 @@
               <p style="margin: 0;">
                 Prezado(a),
                 <br/>
-                Este e-mail é para informá-lo(a) que houve uma tentativa de cadastro na INDICA SAÚDE utilizando este endereço de e-mail. Caso não tenha sido você que realizou esta tentativa, por favor, ignore este e-mail.
+                Este e-mail é para informá-lo(a) que houve uma tentativa de cadastro na BANCA DE LEADS utilizando este endereço de e-mail. Caso não tenha sido você que realizou esta tentativa, por favor, ignore este e-mail.
                 <br/>
                 Atenciosamente,
-                Equipe da INDICA SAÚDE              
+                Equipe da BANCA DE LEADS              
               </p>
             </td>
           </tr>

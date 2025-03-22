@@ -8,9 +8,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 30px;
+        /* margin-top: 30px; */
         width: 100%;
         min-height: 100vh;
+        background-color: #007fff;
     }
 
     .container-info {

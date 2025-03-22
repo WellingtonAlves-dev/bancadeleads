@@ -1498,7 +1498,7 @@ pre code {
 }
 
 .table tr {
-  background-color: rgb(74,81,120);
+  background-color: #007fff;
   border-color: none;
   margin: 3px;
 }
@@ -1913,7 +1913,7 @@ input[type="month"].form-control {
 
 select.form-control:focus::-ms-value {
   color: white;
-  background-color: rgb(74,81,120);
+  background-color: #007fff;
 
 }
 
@@ -2365,8 +2365,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background: rgb(74,81,120);
-  border-color: rgb(74,81,120);
+  background: #007fff;
+  border-color: #007fff;
   transition: 0.3s ease;
 }
 
@@ -9899,7 +9899,7 @@ a:focus {
 }
 
 .lead_main_page {
-  width: 70%;
+  width: 100%;
 }
 
 .logo_principal {

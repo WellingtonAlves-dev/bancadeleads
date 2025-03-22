@@ -234,10 +234,10 @@
               <p style="margin: 0;">
                 Prezado(a),
                 <br/>
-                Este e-mail é para informá-lo(a) que houve uma tentativa de recuperação de senha na INDICA SAÚDE utilizando este endereço de e-mail
+                Este e-mail é para informá-lo(a) que houve uma tentativa de recuperação de senha na BANCA DE LEADS utilizando este endereço de e-mail
                 <br/>
                 Atenciosamente,
-                Equipe da INDICA SAÚDE              
+                Equipe da BANCA DE LEADS              
               </p>
             </td>
           </tr>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <p>
-        Termo de Uso do Site "INDICA SAÚDE"
+        Termo de Uso do Site "BANCA DE LEADS"
     </p>
 </body>
 </html>

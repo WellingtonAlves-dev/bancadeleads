@@ -193,7 +193,7 @@ $estados = array(
 .lead-plan-7 {
     font-weight: bold;                  /* 36 */
     font-size: 20px;                    /* 37 */
-    color: rgb(74,81,120);              /* 38 */
+    color: #007fff;              /* 38 */
 }
 
 .lead-price-8 {
@@ -215,21 +215,6 @@ $estados = array(
     text-align: right;                  /* 46 */
 }
 
-.cta-button-14 {
-    background-color: transparent;      /* Fundo transparente */
-    color: #28a745;                     /* Cor do texto verde */
-    border: 2px solid #28a745;          /* Borda verde */
-    border-radius: 5px;                 /* Mantém a borda arredondada */
-    padding: 8px 15px;                  /* Mesma configuração de padding */
-    cursor: pointer;                    /* Mantém o cursor pointer */
-    font-weight: bold;                  /* Mantém o texto em negrito */
-    transition: background-color 0.3s ease; /* Transição suave no hover */
-}
-
-.cta-button-14:hover {
-    background-color: #28a745;          /* Fundo verde no hover */
-    color: white;                       /* Texto branco no hover */
-}
 .grupo-infos-btn {
     display: flex; 
     align-items: center; 
@@ -295,24 +280,20 @@ $estados = array(
     .lead-plan-7 {
         font-size: 18px;                 /* Ajusta o tamanho da fonte do plano */
     }
-    
-    .cta-button-14 {
-        padding: 6px 10px;               /* Diminui o padding do botão */
-        font-size: 14px;                 /* Diminui o tamanho do texto */
-    }
+
 }
 
 </style>
 
 <!-- Page Heading -->
-<div class="d-flex justify-content-between mb-2">
+{{-- <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url("/")}}">Área do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Comprar Lead Avulsa</li>
         </ol>
     </nav>
-</div>
+</div> --}}
 @if(Session::has("success_save"))
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     {{ Session::get("success_save") }}
@@ -328,67 +309,50 @@ $estados = array(
 </div>
 @endif
 
-<div class="container">
-    <div class="d-flex justify-content-between">
-        <button class="btn filter-btn" data-toggle="modal" data-target="#filterModal">Filtrar Leads</button>
-        <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Adicionar Crédito</button>
-    </div>
-</div>
 
 <!-- Main Content Area -->
-<div class="container lead_main_page" id="lead_main">
-    <!-- Leads serão carregados via AJAX aqui -->
+<div class="container d-flex justify-content-center">
+    <form class="row g-3 align-items-end">
+        <div class="col-md-3">
+            <label for="ddd_choice" class="form-label">Selecione o(s) DDD(s)</label>
+            <select class="form-control select2-multiple" id="ddd_choice" multiple="multiple">
+                @foreach($estados as $key => $estado)
+                    <option value="{{$key}}">{{$estado}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="tipo_choice" class="form-label">Selecione o(s) tipo(s) de lead</label>
+            <select class="form-control select2-multiple" id="tipo_choice" multiple="multiple">
+                @foreach($tipos as $tipo)
+                    <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="plano_choice" class="form-label">Selecione o(s) plano(s)</label>
+            <select class="form-control select2-multiple" id="plano_choice" multiple="multiple">
+                @foreach($planos as $plano)
+                    <option value="{{$plano->id}}">{{$plano->nome}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+            <button type="button" class="btn btn-secondary w-100" onclick="clearFilters()">Limpar Filtros</button>
+            <button type="button" class="btn filter-btn w-100" onclick="filter(true)">Aplicar Filtro</button>
+        </div>
+    </form>
 </div>
+
+
+
+        <div class="row d-flex justify-content-center align-items-center lead_main_page" id="lead_main">
+            <!-- Leads serão carregados via AJAX aqui -->
+        </div>
 
 <!-- Loading Spinner -->
 <div class="text-center my-4">
     <strong id="loading_spinner_lead" style="display: none;">Carregando...</strong>
-</div>
-
-<!-- Filter Modal -->
-<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content modal-filter">
-            <div class="modal-header">
-                <h5 class="modal-title" id="filterModalLabel">Filtrar Leads</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="ddd_choice">Selecione o(s) DDD(s)</label>
-                        <select class="form-control select2-multiple" id="ddd_choice" multiple="multiple">
-                            @foreach($estados as $key => $estado)
-                                <option value="{{$key}}">{{$estado}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="tipo_choice">Selecione o(s) tipo(s) de lead</label>
-                        <select class="form-control select2-multiple" id="tipo_choice" multiple="multiple">
-                            @foreach($tipos as $tipo)
-                                <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="plano_choice">Selecione o(s) plano(s)</label>
-                        <select class="form-control select2-multiple" id="plano_choice" multiple="multiple">
-                            @foreach($planos as $plano)
-                                <option value="{{$plano->id}}">{{$plano->nome}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="clearFilters()">Limpar Filtros</button>
-                <button type="button" class="btn filter-btn w-100" onclick="filter(true)">Aplicar Filtro</button>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 

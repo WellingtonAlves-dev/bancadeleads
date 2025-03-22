@@ -6,7 +6,7 @@ $totalLeadsDisponivel = 0;
 @endphp
 @foreach($leads as $lead)
 @if($lead->disponivel)
-    <div class="col-12 justify-content-center">
+    <div class="col-lg-4">
         @include("components.lead")
     </div>
     @php
