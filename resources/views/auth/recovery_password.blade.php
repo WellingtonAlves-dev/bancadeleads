@@ -152,7 +152,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fa fa-paper-plane" style="margin-right: 8px;"></i> Enviar código de recuperação
+                    <i class="fa fa-paper-plane" style="margin-right: 8px;"></i> Enviar é-mail de recuperação
                 </button>
                 
                 <div class="login-footer">
