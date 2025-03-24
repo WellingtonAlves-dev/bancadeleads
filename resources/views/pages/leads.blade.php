@@ -285,6 +285,14 @@ $estados = array(
 
 }
 
+.select2-search__field {
+    min-width: 231.75px;
+}
+.select2-container {
+    width: 100% !important;
+}
+
+
 </style>
 
 <!-- Page Heading -->
@@ -313,9 +321,9 @@ $estados = array(
 
 
 <!-- Main Content Area -->
-<div class="container d-flex justify-content-center">
+<div class="container-fluid d-flex justify-content-center">
     <div class="alert alert-info mb-4">
-    <form class="row g-3 align-items-end">
+    <form class="row g-2 align-items-end">
         <div class="col-md-3">
             <label for="ddd_choice" class="form-label">Selecione o(s) DDD(s)</label>
             <select class="form-control select2-multiple" id="ddd_choice" multiple="multiple">

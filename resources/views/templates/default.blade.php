@@ -268,6 +268,10 @@
         <div class="sidebar-header">
             <img src="{{asset('assets/img/logo.png')}}" alt="BANCA DE LEADS">
         </div>
+        
+        <button id="sidebarToggle2" class="btn btn-link text-white mr-3">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
         <ul class="navbar-nav">
             <!-- Área do Cliente -->
             @if(Auth::user()->role == "user")
@@ -318,52 +322,64 @@
 
             <!-- Área do Administrador -->
             @if(Auth::user()->role === "admin")
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/planos')}}">
-                        <i class="fas fa-cogs"></i> Configuração de Planos
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/tipos')}}">
-                        <i class="fas fa-cogs"></i> Configuração de Tipos
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/leads')}}">
-                        <i class="fas fa-cogs"></i> Configuração de Leads
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/avisos')}}">
-                        <i class="fas fa-cogs"></i> Configuração de Avisos
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/users')}}">
-                        <i class="fas fa-users-cog"></i> Gerenciar Usuários
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/marketing')}}">
-                        <i class="fas fa-bullhorn"></i> Campanhas de Marketing
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/reposicoes')}}">
-                        <i class="fas fa-undo"></i> Reposições Pendentes
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/admin/financeiro/vendas')}}">
-                        <i class="fas fa-coins"></i> Relatórios Financeiros
-                    </a>
-                </li>
-            @endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/planos') }}">
+                    <i class="fas fa-list-alt"></i> <span>Configuração de Planos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/tipos') }}">
+                    <i class="fas fa-tags"></i> <span>Configuração de Tipos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/leads') }}">
+                    <i class="fas fa-address-card"></i> <span>Configuração de Leads</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/pacotes') }}">
+                    <i class="fas fa-box-open"></i> <span>Configuração de Pacotes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/avisos') }}">
+                    <i class="fas fa-exclamation-triangle"></i> <span>Configuração de Avisos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/users') }}">
+                    <i class="fas fa-users-cog"></i> <span>Gerenciar Usuários</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/marketing') }}">
+                    <i class="fas fa-bullhorn"></i> <span>Campanhas de Marketing</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/reposicoes') }}">
+                    <i class="fas fa-undo-alt"></i> <span>Reposições Pendentes</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/financeiro/vendas') }}">
+                    <i class="fas fa-chart-line"></i> <span>Relatórios Financeiros</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/notificacoes') }}">
+                    <i class="fas fa-bell"></i> <span>Notificações</span>
+                </a>
+            </li>
+        @endif
+        
         </ul>
-
-        <button id="sidebarToggle2" class="btn btn-link text-white mr-3">
-            <i class="fas fa-bars fa-lg"></i>
-        </button>
     </div>
 
 
@@ -715,7 +731,7 @@
             const contentWrapper = document.getElementById('content-wrapper');
 
             // Verifica estado salvo
-            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            const isCollapsed = true;
             if (isCollapsed) {
                 sidebar.classList.add('collapsed');
                 contentWrapper.style.marginLeft = '70px';
