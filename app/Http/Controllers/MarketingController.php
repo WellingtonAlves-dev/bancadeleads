@@ -71,7 +71,7 @@ class MarketingController extends Controller
         $emails_array = array_chunk($emails, 20);
         foreach($emails_array as $email_array) {
             try {
-                Mail::to("contato@indicasaude.com.br")
+                Mail::to("contato@bancadeleads.com.br")
                 ->bcc($email_array)
                 ->send(new EmailMarketing($assunto, $request->template)); 
                 sleep(1);   

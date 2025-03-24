@@ -146,7 +146,7 @@ id="formSubmit">
 
     <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" class="form-control" name="email" value="{{$lead->email ?? ""}}" id="email" placeholder="Ex. contato@indicasaude.com.br"/>
+        <input type="text" class="form-control" name="email" value="{{$lead->email ?? ""}}" id="email" placeholder="Ex. contato@bancadeleads.com.br"/>
     </div>
 
     <div class="form-group">

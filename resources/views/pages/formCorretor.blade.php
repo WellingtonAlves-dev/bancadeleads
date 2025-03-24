@@ -58,7 +58,7 @@ id="formSubmit" class="form-horizontal shadow p-4 bg-white rounded">
         <label for="email" class="col-sm-2 col-form-label">E-mail</label>
         <div class="col-sm-10">
             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"
-                placeholder="Ex. contato@indicasaude.com.br"
+                placeholder="Ex. contato@bancadeleads.com.br"
                 value="{{$corretor->email ?? ""}}"
             />
             @error('email')

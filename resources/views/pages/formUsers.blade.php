@@ -56,7 +56,7 @@ id="formSubmit">
     <div class="form-group">
         <label for="telefone">E-mail</label>
         <input type="text" class="form-control" name="email" id="email"
-            placeholder="Ex. contato@indicasaude.com.br"
+            placeholder="Ex. contato@bancadeleads.com.br"
             value="{{$user->email ?? ""}}"
         />
     </div>
