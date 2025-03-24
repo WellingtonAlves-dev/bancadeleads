@@ -35,6 +35,10 @@
             transition: all 0.3s ease;
         }
 
+        #sidebarToggle2 {
+            display: none;
+        }
+
         /* Estado recolhido */
         #sidebar.collapsed {
             width: 70px;
@@ -221,17 +225,8 @@
 
         /* Responsividade */
         @media (max-width: 768px) {
-            #sidebar {
-                transform: translateX(-100%);
-                width: 250px;
-            }
-
-            #sidebar.active {
-                transform: translateX(0);
-            }
-
             #sidebar.collapsed {
-                width: 250px;
+                display: none;
                 /* Mantém largura normal em mobile */
             }
 
@@ -241,13 +236,17 @@
 
             /* Esconde o toggle em desktop se estiver em mobile */
             #sidebarToggle {
-                display: block !important;
+                margin-left: 10px;
             }
 
             #sidebar.collapsed .has-submenu:hover .submenu,
             #sidebar.collapsed .has-submenu:focus-within .submenu {
                 left: 70px;
                 top: auto;
+            }
+            #sidebarToggle2 {
+                margin-top: 15px;
+                display: block;
             }
 
         }
@@ -361,6 +360,10 @@
                 </li>
             @endif
         </ul>
+
+        <button id="sidebarToggle2" class="btn btn-link text-white mr-3">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
     </div>
 
 
@@ -708,6 +711,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarToggle2 = document.getElementById("sidebarToggle2");
             const contentWrapper = document.getElementById('content-wrapper');
 
             // Verifica estado salvo
@@ -730,6 +734,20 @@
                     localStorage.setItem('sidebarCollapsed', 'false');
                 }
             });
+
+            sidebarToggle2.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+
+                // Ajusta o conteúdo principal
+                if (sidebar.classList.contains('collapsed')) {
+                    contentWrapper.style.marginLeft = '70px';
+                    localStorage.setItem('sidebarCollapsed', 'true');
+                } else {
+                    contentWrapper.style.marginLeft = '250px';
+                    localStorage.setItem('sidebarCollapsed', 'false');
+                }
+            });
+
         });
     </script>
     @yield("script")
