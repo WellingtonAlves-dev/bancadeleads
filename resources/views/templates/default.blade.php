@@ -263,124 +263,124 @@
         </div>
     @endif
 
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div class="sidebar-header">
-            <img src="{{asset('assets/img/logo.png')}}" alt="BANCA DE LEADS">
-        </div>
-        
-        <button id="sidebarToggle2" class="btn btn-link text-white mr-3">
-            <i class="fas fa-bars fa-lg"></i>
-        </button>
-        <ul class="navbar-nav">
-            <!-- Área do Cliente -->
-            @if(Auth::user()->role == "user")
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/checkout')}}">
-                        <i class="fas fa-wallet"></i> <span class="texto-sidebar">Recarregar Saldo</span>
-                    </a>
-                </li>
-                <li class="nav-item has-submenu">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-shopping-cart"></i> <span class="texto-sidebar">Comprar Leads</span> <i
-                            class="fas fa-chevron-down ml-auto"></i>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="{{url('/leads')}}">Leads Avulsas</a></li>
-                        <li><a href="{{url('/pacotes')}}">Pacotes de Leads</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/minhas/leads')}}">
-                        <i class="fas fa-folder-open"></i> <span class="texto-sidebar">Minhas Leads</span>
-                    </a>
-                </li>
-            @endif
-
-            <!-- Gestão de Reposições -->
-            @if(Auth::user()->role !== "admin")
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/reposicoes')}}">
-                        <i class="fas fa-sync-alt"></i> <span class="texto-sidebar">Reposições Solicitadas</span>
-                    </a>
-                </li>
-            @endif
-
-            <!-- Gestão de Corretores e Financeiro -->
-            @if(Auth::user()->role === "user")
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/corretores')}}">
-                        <i class="fas fa-users"></i> <span class="texto-sidebar">Gestão de Corretores</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/meus/extratos')}}">
-                        <i class="fas fa-chart-line"></i> <span class="texto-sidebar">Extrato Financeiro</span>
-                    </a>
-                </li>
-            @endif
-
-            <!-- Área do Administrador -->
-            @if(Auth::user()->role === "admin")
+<!-- Sidebar -->
+<div id="sidebar">
+    <div class="sidebar-header">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="BANCA DE LEADS">
+    </div>
+    
+    <button id="sidebarToggle2" class="btn btn-link text-white mr-3">
+        <i class="fas fa-bars fa-lg"></i>
+    </button>
+    
+    <ul class="navbar-nav">
+        <!-- Área do Cliente -->
+        @if(Auth::user()->role == "user")
+            <li class="nav-item" data-toggle="tooltip" title="Recarregar Saldo" data-placement="right">
+                <a class="nav-link" href="{{ url('/checkout') }}">
+                    <i class="fas fa-wallet"></i> <span>Recarregar Saldo</span>
+                </a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a class="nav-link" href="#" data-toggle="tooltip" title="Comprar Leads" data-placement="right">
+                    <i class="fas fa-shopping-cart"></i> <span>Comprar Leads</span> <i class="fas fa-chevron-down ml-auto"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="{{ url('/leads') }}">Leads Avulsas</a></li>
+                    <li><a href="{{ url('/pacotes') }}">Pacotes de Leads</a></li>
+                </ul>
+            </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">
+                <a class="nav-link" href="{{ url('/minhas/leads') }}" data-toggle="tooltip" title="Minhas Leads" data-placement="right">
+                    <i class="fas fa-folder-open"></i> <span>Minhas Leads</span>
+                </a>
+            </li>
+        @endif
+
+        <!-- Gestão de Reposições -->
+        @if(Auth::user()->role !== "admin")
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/reposicoes') }}" data-toggle="tooltip" title="Reposições Solicitadas" data-placement="right">
+                    <i class="fas fa-sync-alt"></i> <span>Reposições Solicitadas</span>
+                </a>
+            </li>
+        @endif
+
+        <!-- Gestão de Corretores e Financeiro -->
+        @if(Auth::user()->role === "user")
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/corretores') }}" data-toggle="tooltip" title="Gestão de Corretores" data-placement="right">
+                    <i class="fas fa-users"></i> <span>Gestão de Corretores</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/meus/extratos') }}" data-toggle="tooltip" title="Extrato Financeiro" data-placement="right">
+                    <i class="fas fa-chart-line"></i> <span>Extrato Financeiro</span>
+                </a>
+            </li>
+        @endif
+
+        <!-- Área do Administrador -->
+        @if(Auth::user()->role === "admin")
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}" data-toggle="tooltip" title="Dashboard" data-placement="right">
                     <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/planos') }}">
+                <a class="nav-link" href="{{ url('/admin/planos') }}" data-toggle="tooltip" title="Configuração de Planos" data-placement="right">
                     <i class="fas fa-list-alt"></i> <span>Configuração de Planos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/tipos') }}">
+                <a class="nav-link" href="{{ url('/admin/tipos') }}" data-toggle="tooltip" title="Configuração de Tipos" data-placement="right">
                     <i class="fas fa-tags"></i> <span>Configuração de Tipos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/leads') }}">
+                <a class="nav-link" href="{{ url('/leads') }}" data-toggle="tooltip" title="Configuração de Leads" data-placement="right">
                     <i class="fas fa-address-card"></i> <span>Configuração de Leads</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/pacotes') }}">
+                <a class="nav-link" href="{{ url('/admin/pacotes') }}" data-toggle="tooltip" title="Configuração de Pacotes" data-placement="right">
                     <i class="fas fa-box-open"></i> <span>Configuração de Pacotes</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/avisos') }}">
+                <a class="nav-link" href="{{ url('/admin/avisos') }}" data-toggle="tooltip" title="Configuração de Avisos" data-placement="right">
                     <i class="fas fa-exclamation-triangle"></i> <span>Configuração de Avisos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/users') }}">
+                <a class="nav-link" href="{{ url('/admin/users') }}" data-toggle="tooltip" title="Gerenciar Usuários" data-placement="right">
                     <i class="fas fa-users-cog"></i> <span>Gerenciar Usuários</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/marketing') }}">
+                <a class="nav-link" href="{{ url('/admin/marketing') }}" data-toggle="tooltip" title="Campanhas de Marketing" data-placement="right">
                     <i class="fas fa-bullhorn"></i> <span>Campanhas de Marketing</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/reposicoes') }}">
+                <a class="nav-link" href="{{ url('/admin/reposicoes') }}" data-toggle="tooltip" title="Reposições Pendentes" data-placement="right">
                     <i class="fas fa-undo-alt"></i> <span>Reposições Pendentes</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/financeiro/vendas') }}">
+                <a class="nav-link" href="{{ url('/admin/financeiro/vendas') }}" data-toggle="tooltip" title="Relatórios Financeiros" data-placement="right">
                     <i class="fas fa-chart-line"></i> <span>Relatórios Financeiros</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/admin/notificacoes') }}">
+                <a class="nav-link" href="{{ url('/admin/notificacoes') }}" data-toggle="tooltip" title="Notificações" data-placement="right">
                     <i class="fas fa-bell"></i> <span>Notificações</span>
                 </a>
             </li>
         @endif
-        
-        </ul>
-    </div>
+    </ul>
+</div>
+
 
 
     <!-- End of Sidebar -->
@@ -393,7 +393,7 @@
 
             <!-- Topbar -->
             <nav class="navbar shadow navbar-expand navbar-light topbar mb-4 static-top"
-                style="padding: 0 !important; height: 120px;   background-color: #007fff !important;">
+                style="padding: 0 !important; height: 80px;   background-color: #007fff !important;">
                 <div>
                     <button id="sidebarToggle" class="btn btn-link text-white mr-3">
                         <i class="fas fa-bars fa-lg"></i>
@@ -724,6 +724,28 @@
         });
     </script>
     <script>
+
+        // Inicializa tooltips
+        function initTooltips() {
+            $('[data-toggle="tooltip"]').tooltip({
+                boundary: 'window'
+            });
+        }
+
+        // Remove tooltips
+        function destroyTooltips() {
+            $('[data-toggle="tooltip"]').tooltip('dispose');
+        }
+
+        // Atualiza tooltips com base no estado
+        function updateTooltips() {
+            if (sidebar.classList.contains('collapsed')) {
+                initTooltips();
+            } else {
+                destroyTooltips();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
@@ -740,7 +762,7 @@
             // Evento do botão toggle
             sidebarToggle.addEventListener('click', function () {
                 sidebar.classList.toggle('collapsed');
-
+                updateTooltips()
                 // Ajusta o conteúdo principal
                 if (sidebar.classList.contains('collapsed')) {
                     contentWrapper.style.marginLeft = '70px';
@@ -753,7 +775,7 @@
 
             sidebarToggle2.addEventListener('click', function () {
                 sidebar.classList.toggle('collapsed');
-
+                updateTooltips()
                 // Ajusta o conteúdo principal
                 if (sidebar.classList.contains('collapsed')) {
                     contentWrapper.style.marginLeft = '70px';
@@ -766,6 +788,14 @@
 
         });
     </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                boundary: 'window'
+            })
+        })
+    </script>
+    
     @yield("script")
 </body>
 
