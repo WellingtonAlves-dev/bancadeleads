@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <input id="termosprivacidade" type="checkbox" />
                                 <label for="termosprivacidade">Eu aceito os <a target="_blank"
-                                        href="https://indicasaude.com.br/termos.html">termos e a política de privacidade</a>
+                                        href="https://bancadeleads.com.br/sistema/termos.php">termos e a política de privacidade</a>
                                     do site.</label>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">

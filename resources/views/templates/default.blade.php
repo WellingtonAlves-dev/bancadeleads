@@ -425,7 +425,7 @@
                 <div class="text-center my-auto">
                 </div>
                 <div class="copyright text-center my-auto">
-                    <a style="color: black;" target="_blank" href="https://indicasaude.com.br/termos.html">Termos e a
+                    <a style="color: black;" target="_blank" href="https://bancadeleads.com.br/sistema/termos.php">Termos e a
                         política de privacidade</a>
                 </div>
                 <div class="copyright text-center mt-5">
