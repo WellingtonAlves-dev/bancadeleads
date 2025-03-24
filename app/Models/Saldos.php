@@ -15,7 +15,7 @@ class Saldos extends Model
     ];
     protected $dates = ['created_at'];
 
-    public function gerarEntrada($user_id, $valor, $observacao, $ignorar_saldo_reposicao = false) {
+    public function gerarEntrada($user_id, $valor, $observacao, $ignorar_saldo_reposicao = false, $valor_saldo_reposicao = null) {
 
         $user = User::where("id", $user_id)->first();
         $saldoUser = $user->getValorSaldo();
@@ -28,6 +28,8 @@ class Saldos extends Model
         $this->valor = $valor;
         $this->observação = $observacao;
         if(!$ignorar_saldo_reposicao) {
+            $this->saldo_reposicao = $valor_saldo_reposicao;
+        } else if($valor_saldo_reposicao != null) {
             $this->saldo_reposicao = $valor_saldo_reposicao;
         }
         $this->save();

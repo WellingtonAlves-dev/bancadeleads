@@ -237,6 +237,21 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{url('/admin/tipos')}}">
+                    <i class="fas fa-cogs"></i> Configuração de Tipos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/leads')}}">
+                    <i class="fas fa-cogs"></i> Configuração de Leads
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/admin/avisos')}}">
+                    <i class="fas fa-cogs"></i> Configuração de Avisos
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{url('/admin/users')}}">
                     <i class="fas fa-users-cog"></i> Gerenciar Usuários
                 </a>
@@ -352,18 +367,20 @@
                     @endif
                 </ul>
             </nav>
-            <div class="w-100 d-flex justify-content-end align-items-center">
-                <span onclick="window.location.href = '{{url("/checkout")}}'" class="on-hover p-3">
-                    Meu saldo
-                    <strong>
-                        R$
-                        <span class="saldo_infos" id="seuSaldoAtualInfo">{{ Auth::user()->getValorSaldo(true) }}</span>
-                    </strong>
-                </span>
-            </div>
-            <div class="w-100 p-3 d-flex justify-content-end align-items-center">
-                <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Recarregar Saldo</button>
-            </div>
+            @if(Auth::user()->role == "user")
+                <div class="w-100 d-flex justify-content-end align-items-center">
+                    <span onclick="window.location.href = '{{url("/checkout")}}'" class="on-hover p-3">
+                        Meu saldo
+                        <strong>
+                            R$
+                            <span class="saldo_infos" id="seuSaldoAtualInfo">{{ Auth::user()->getValorSaldo(true) }}</span>
+                        </strong>
+                    </span>
+                </div>
+                <div class="w-100 p-3 d-flex justify-content-end align-items-center">
+                    <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Recarregar Saldo</button>
+                </div>
+            @endif
 
             <!-- End of Topbar -->
 

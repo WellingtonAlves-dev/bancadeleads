@@ -2,45 +2,45 @@
 @section("content")
 
 <style>
-    @media screen and (max-width: 728px) {
-        .container {
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
+
+    /* Centralizando o conteúdo da página */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-top: 30px; */
+        width: 100%;
+        min-height: 100vh;
+        background-color: #007fff;
+    }
+
+    .container-info {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    /* Card estilizado para o formulário */
+    .form-card {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    /* Ocultar texto de informações em telas menores */
+    @media screen and (max-width: 1000px) {
+        .infos-text {
+            display: none;
         }
     }
 
-    .container {
-        max-width: 450px;
+    /* Tornar o container responsivo */
+    @media screen and (max-width: 728px) {
+        .container-info {
+            width: 100%;
+        }
     }
 
-    .form-control {
-        border-radius: 20px;
-        padding: 15px;
-        font-size: 14px;
-    }
-
-    .btn-primary {
-        border-radius: 0.35rem;
-    }
-
-    .card {
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h3.white {
-        color: #333;
-    }
-
-    .text-center a {
-        color: #007bff;
-    }
-
-    .form-group label {
-        font-size: 12px;
-    }
 </style>
 
 <div class="d-flex align-items-center justify-content-center mt-5">

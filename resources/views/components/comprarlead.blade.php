@@ -94,7 +94,7 @@
   <div class="modal-dialog modal_dialog_large" role="document">
       <div class="modal-content modal_content_clean">
           <div class="modal-header modal_header_style">
-              <h5 class="modal-title modal_title_clean">Confirmação de Compra</h5>
+              <h5 class="modal-title modal_title_clean">Atender Lead</h5>
               <button type="button" class="close modal_close_button" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
@@ -102,7 +102,7 @@
           <div class="modal-body modal_body_style">
               <div class="alert alert-warning alert_warning_style">
                   <span>
-                      Você está prestes a comprar esta lead por 
+                      Deseja atender essa Lead por
                       <strong class="lead_price_style">R$ {{ number_format($lead->preco, 2) }}</strong>.
                   </span>
               </div>

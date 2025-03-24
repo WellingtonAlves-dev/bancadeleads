@@ -62,8 +62,12 @@
     class="card card-lead mt-4 shadow">
     
     <!-- Cabeçalho do Card -->
-    <div class="card-header text-center text-white" style="background-color: #007fff; border: none;">
-        <h5 class="fw-bold m-0">Lead {{$lead->tipo->nome}}</h5>
+    <div class="card-header text-center text-white" style="background-color: {{ $lead->cnpj ? "#007fff" : "#fafafa" }}; border: none;  color: {{ $lead->cnpj ? "white" : "black" }} !important;">
+        <h5 class="fw-bold m-0">Lead {{$lead->tipo->nome}}
+             @if($lead->cnpj)
+                <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 16px;"></i>
+             @endif
+        </h5>
         <h6 class="fw-bold m-0">DDD ({{$lead->ddd}})</h6>
     </div>
 
@@ -79,24 +83,24 @@
         <div class="highlight-price">R$ {{$lead->preco}}</div>
 
         <!-- Tabela de Informações -->
-        <table class="table w-100 table-bordered">
-            <tr>
+        <table class="table text-left w-100 table-bordered">
+            <tr style="background-color: #fafafa; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-star"></i> Plano</th>
                 <td>{{$lead->plano->nome}}</td>
             </tr>
-            <tr>
+            <tr style="background-color: #ebebeb; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-phone"></i> Região</th>
                 <td>DDD ({{$lead->ddd}})</td>
             </tr>
-            <tr>
+            <tr style="background-color: #fafafa; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-user"></i> Idade</th>
                 <td>{{$lead->idade}} anos</td>
             </tr>
-            <tr>
+            <tr style="background-color: #ebebeb; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-briefcase"></i> Pessoa Jurídica</th>
                 <td>{{$lead->cnpj ? "Sim" : "Não"}}</td>
             </tr>
-            <tr>
+            <tr style="background-color: #fafafa; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-info-circle"></i> Observação</th>
                 <td>{{$lead->extra ?? 'Nenhuma'}}</td>
             </tr>
@@ -111,7 +115,7 @@
         <!-- Botões de Ação -->
         @if(Auth::user()->role == "user")
         <button class="btn btn-primary w-100 fw-bold mt-2" onclick="atenderLead('{{$lead->id}}')">
-            <i class="fas fa-shopping-cart"></i> Adquirir Lead
+            <i class="fas fa-shopping-cart"></i> Atender Lead
         </button>
         @elseif($lead->id_user)
         <div class="alert alert-success mt-2 p-2">

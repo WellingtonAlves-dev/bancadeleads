@@ -1,13 +1,13 @@
 @extends("templates.list")
 @section("title")
-<div class="d-flex justify-content-between mb-2">
+<!-- <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url("/")}}">Área do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Meus Corretores</li>
         </ol>
     </nav>
-</div>
+</div> -->
 @endsection
 @section("menu")
     <a class="btn btn-primary" href="{{url("corretores/novo")}}">Novo Corretor</a>

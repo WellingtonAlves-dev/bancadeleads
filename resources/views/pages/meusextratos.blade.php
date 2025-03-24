@@ -1,13 +1,13 @@
 @extends("templates.list")
 @section("title")
-<div class="d-flex justify-content-between mb-2">
+<!-- <div class="d-flex justify-content-between mb-2">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url("/")}}">Área do Cliente</a></li>
           <li class="breadcrumb-item active" aria-current="page">Meu Extrato Financeiro</li>
         </ol>
     </nav>
-</div>
+</div> -->
 @endsection
 @section("menu")
     <h5>Saldo atual: R$ {{$saldoAtual}}</h5>

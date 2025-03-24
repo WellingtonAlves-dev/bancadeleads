@@ -304,7 +304,7 @@ $estados = array(
 @endif
 
 @if($avisos ?? false)
-<div class="alert alert-info mb-4">
+<div class="alert alert-info mb-4" style="background-color: #ff8000 !important; color: white;">
     {!! $avisos->aviso ?? "" !!}
 </div>
 @endif
@@ -312,6 +312,7 @@ $estados = array(
 
 <!-- Main Content Area -->
 <div class="container d-flex justify-content-center">
+    <div class="alert alert-info mb-4">
     <form class="row g-3 align-items-end">
         <div class="col-md-3">
             <label for="ddd_choice" class="form-label">Selecione o(s) DDD(s)</label>
@@ -342,6 +343,7 @@ $estados = array(
             <button type="button" class="btn filter-btn w-100" onclick="filter(true)">Aplicar Filtro</button>
         </div>
     </form>
+    </div>
 </div>
 
 

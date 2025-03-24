@@ -34,7 +34,7 @@ class AuthController extends Controller
         ]);
         $data["name"] = strtolower($data["name"]);
         $data["email"] = strtolower($data["email"]);
-        $data["password"] = bcrypt($data["password"]);
+        $data["password"] = sha1($data["password"]);
         $data["email_verified_at"] = Carbon::now();
         $user = \App\Models\User::create($data);
         

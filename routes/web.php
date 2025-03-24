@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CorretoresController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FinanceiroController;
+use App\Http\Controllers\Importadores;
 use App\Http\Controllers\LeadsController;
 use App\Http\Controllers\LeadsFriasController;
 use App\Http\Controllers\MarketingController;
@@ -169,3 +170,9 @@ Route::middleware(["auth"])->group(function() {
     Route::get("/reposicoes", [ReposicaoController::class, "index"]);
     Route::post("/reposicao/nova", [ReposicaoController::class, "gerarReposicao"]);
 });
+
+    // Importador (desenvolvimento, apenas)
+    Route::get("/importar", function() {
+        return view("pages.importadores.importador");
+    });
+    Route::post("/importar", [Importadores::class,"importarCsv"]);

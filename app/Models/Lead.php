@@ -24,7 +24,8 @@ class Lead extends Model
         "tipo_id",
         "cnpj",
         "idade",
-        "id_global"
+        "id_global",
+        "origem"
     ];
 
     public function tipo() {

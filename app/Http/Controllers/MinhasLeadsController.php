@@ -17,58 +17,78 @@ class MinhasLeadsController extends Controller
 {
     public function index(Request $request) {
         $minhasLeads = Lead::select(
-            "leads.*", "saldos.valor as preco", "minhas_leads.created_at as dataAquisicao", 
-            "reposicaos.id as reposicaoID", "reposicaos.status as reposicaoStatus", "saldos.lead_fria as statusLeadFria"
+            "leads.*", 
+            "minhas_leads.created_at as dataAquisicao", 
+            "reposicaos.id as reposicaoID", 
+            "reposicaos.status as reposicaoStatus",
+            "saldos.valor as preco", 
+            "saldos.lead_fria as statusLeadFria"
         );
-
-        if(!Auth::user()->vinculado) {
+    
+        // Lógica para junção com saldos apenas quando a origem não for 'importador'
+        $minhasLeads = $minhasLeads->leftJoin("saldos", function($join) {
+            $join->on("saldos.lead_id", "=", "leads.id")
+                 ->where(function($query) {
+                     $query->where("leads.origem", "!=", "importador")
+                           ->orWhereNull("leads.origem");
+                 });
+        });
+    
+        // Junção com minhas_leads com lógica condicional
+        if (!Auth::user()->vinculado) {
             $minhasLeads = $minhasLeads
-            ->join("minhas_leads", function($join) {
-                $join->on("minhas_leads.id_lead", "=", "leads.id")
-                     ->where("minhas_leads.id_user", "=", Auth::user()->id);
-            })
-            ->join("saldos", function($join) {
-                $join->on("saldos.lead_id", "=", "leads.id")
-                     ->where("saldos.user_id", "=", Auth::user()->id);
-            });
+                ->join("minhas_leads", function($join) {
+                    $join->on("minhas_leads.id_lead", "=", "leads.id")
+                         ->where("minhas_leads.id_user", "=", Auth::user()->id);
+                });
         } else {
             $minhasLeads = $minhasLeads
-            ->join("minhas_leads", function($join) {
-                $join->on("minhas_leads.id_lead", "=", "leads.id");
-            })
-            ->join("saldos", function($join) {
-                $join->on("saldos.lead_id", "=", "leads.id");
-            })
-            ->where("minhas_leads.id_user", Auth::user()->id);
+                ->join("minhas_leads", function($join) {
+                    $join->on("minhas_leads.id_lead", "=", "leads.id");
+                })
+                ->where("minhas_leads.id_user", Auth::user()->id);
         }
+    
+        // Junção com reposição
         $minhasLeads = $minhasLeads
-        ->leftJoin("reposicaos", function($join) {
-            $join->on("reposicaos.lead_id", "=", "leads.id")
-                 ->where("reposicaos.solicitante", "=", Auth::user()->id);
-        })
-        ->orderBy("minhas_leads.id", "desc");
-            
-        if($request->get("dd") == "welltech") {
+            ->leftJoin("reposicaos", function($join) {
+                $join->on("reposicaos.lead_id", "=", "leads.id")
+                     ->where("reposicaos.solicitante", "=", Auth::user()->id);
+            })
+            ->orderBy("minhas_leads.id", "desc");
+    
+        // Debug da query se necessário
+        if ($request->get("dd") == "welltech") {
             dd($minhasLeads->toSql());
         }
-
+    
+        // Paginação
         $paginador = $minhasLeads->paginate(25);
+    
+        // Mapear leads para incluir corretor
         $minhasLeads = $paginador->map(function($minhaLead) {
             $leadUser = MinhasLeads::where("id_user", "!=", Auth::user()->id)
                 ->where("id_lead", $minhaLead->id)
                 ->leftJoin("users", "users.id", "minhas_leads.id_user")
                 ->first();
+    
             $minhaLead->corretor = $leadUser->name ?? null;
             $minhaLead->corretor_id = $leadUser->id_user ?? null;
+    
             return $minhaLead;
         });
+    
+        // Obter saldo de reposição
         $saldoReposicao = Saldos::saldoReposicaoByUser(Auth::user()->id);
+    
+        // Retorna a view com dados
         return view("pages.minhasleads", [
             "leads" => $minhasLeads,
             "paginador" => $paginador,
             "saldoReposicao" => $saldoReposicao
         ]);
     }
+    
     public function excelDownload(Request $request) {
         return Excel::download(new ExportsLead($request->data_inicial, $request->data_final), "minhasleads.xlsx");
     }

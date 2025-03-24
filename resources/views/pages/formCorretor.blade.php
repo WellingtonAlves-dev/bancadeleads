@@ -1,6 +1,6 @@
 @extends("templates.form")
 @section("title")
-<nav aria-label="breadcrumb">
+<!-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{url("/")}}">Área do Cliente</a></li>
       <li class="breadcrumb-item"><a href="{{url("/corretores")}}">Meus Corretores</a></li>
@@ -12,7 +12,7 @@
             @endif
       </li>
     </ol>
-</nav>
+</nav> -->
 @endsection
 
 @section("form")
