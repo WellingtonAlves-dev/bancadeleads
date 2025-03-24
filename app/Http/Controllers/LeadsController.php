@@ -345,7 +345,7 @@ class LeadsController extends Controller
             if($preco != 0) {
                 $preco = str_replace("R$", "", $preco);
                 if(is_numeric($preco)) {
-                    $preco = $preco + (($preco * 5) / 100);
+                    $preco = $preco - (($preco * 2) / 100);
                 }
             } else {
                 $preco = 9.5;
@@ -375,7 +375,7 @@ class LeadsController extends Controller
             }
 
             $data = [
-                "ativo" => true,
+                "ativo" => false,
                 "preco" => $preco,
                 "dias_disponivel" => 1,
                 "qtd_vidas" => 1,
