@@ -16,8 +16,8 @@ $totalLeadsDisponivel = 0;
 @endforeach
 
 @if($totalLeadsDisponivel == 0)
-    <h4 style="text-align: center; margin-top: 25px;">Infelizmente no momento as leads para este DDD
-        já foram todas vendidas, fique atento que em breve entrarão mais leads no horário
-        de funcionamento da plataforma
+    <h4 style="text-align: center; margin-top: 25px; background-color: #007fff; color: white; padding: 12px;">
+        :( Que pena! Você chegou tarde e já acabaram todas as leads para este DDD!
+        Mas não se preocupe, é só aguardar que logo serão adicionados mais leads.
     </h4>
 @endif

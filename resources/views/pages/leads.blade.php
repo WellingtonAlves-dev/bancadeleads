@@ -81,15 +81,15 @@ $estados = array(
     }
 
     .filter-btn {
-        border: 2px solid #943537;
-        color: #943537;
+        border: 2px solid #007fff;
+        color: #007fff;
         background-color: transparent;
         transition: all 0.3s;
     }
 
     .filter-btn:hover {
-        background-color: #943537;
-        color: white;
+        background-color: #007fff;
+        color: white !important;
     }
 
     .modal-filter {

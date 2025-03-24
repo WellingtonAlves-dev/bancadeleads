@@ -297,7 +297,7 @@
             @if(Auth::user()->role !== "admin")
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/reposicoes')}}">
-                        <i class="fas fa-sync-alt"></i> <span class="texto-sidebar">Solicitar Reposições</span>
+                        <i class="fas fa-sync-alt"></i> <span class="texto-sidebar">Reposições Solicitadas</span>
                     </a>
                 </li>
             @endif
