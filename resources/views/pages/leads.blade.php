@@ -85,6 +85,8 @@ $estados = array(
         color: #007fff;
         background-color: transparent;
         transition: all 0.3s;
+        font-size: 14px;
+        padding: 6px;
     }
 
     .filter-btn:hover {
