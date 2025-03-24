@@ -117,7 +117,7 @@ class AuthController extends Controller
             return redirect("/login");
         }
 
-        $password = bcrypt($request->senha);
+        $password = sha1($request->senha);
         $user = ModelsUser::where("id", $recoveryPassword->user_id)->first();
         $user->password = $password;
         $user->save();

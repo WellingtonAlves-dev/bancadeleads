@@ -44,7 +44,7 @@ class CorretoresController extends Controller
         if(empty($data["password"])) {
             unset($data["password"]);
         } else {
-            $data["password"] = bcrypt($data["password"]);
+            $data["password"] = sha1($data["password"]);
         }
 
         $data["email_verified_at"] = Carbon::now();

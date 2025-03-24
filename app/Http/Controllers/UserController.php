@@ -60,7 +60,7 @@ class UserController extends Controller
         if(empty($data["password"])) {
             unset($data["password"]);
         } else {
-            $data["password"] = bcrypt($data["password"]);
+            $data["password"] = sha1($data["password"]);
         }
         if($id == null) {
             $user = User::create($data);

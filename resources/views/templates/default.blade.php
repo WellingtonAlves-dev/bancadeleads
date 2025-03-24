@@ -27,11 +27,50 @@
             left: 0;
             height: 100vh;
             width: 250px;
+            /* Largura normal */
             background-color: #007fff;
             color: white;
             z-index: 1000;
             overflow-y: auto;
-            transition: transform 0.3s ease-in-out;
+            transition: all 0.3s ease;
+        }
+
+        /* Estado recolhido */
+        #sidebar.collapsed {
+            width: 70px;
+            overflow-x: hidden;
+        }
+
+        #sidebar.collapsed .sidebar-header {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #sidebar.collapsed .sidebar-header img {
+            width: 40px;
+        }
+
+        #sidebar.collapsed .nav-item {
+            padding: 15px 5px;
+            text-align: center;
+        }
+
+        #sidebar.collapsed .nav-link {
+            justify-content: center;
+        }
+
+        #sidebar.collapsed .nav-link i {
+            margin-right: 0;
+            font-size: 1.2rem;
+        }
+
+        #sidebar.collapsed .nav-link span,
+        #sidebar.collapsed .has-submenu .fa-chevron-down {
+            display: none;
+        }
+
+        #sidebar.collapsed .has-submenu {
+            position: relative;
         }
 
         #sidebar .sidebar-header {
@@ -71,6 +110,7 @@
             background-color: rgba(0, 0, 0, 0.1);
         }
 
+
         #sidebar .submenu li {
             padding: 10px 0;
         }
@@ -78,10 +118,18 @@
         #sidebar .submenu li a {
             font-size: 13px;
             color: #ddd;
+            display: block;
         }
 
         #sidebar .submenu li a:hover {
             color: white;
+        }
+
+        #sidebar.collapsed .submenu {
+            position: fixed;
+            background-color: #1c2541;
+            left: 10px;
+            padding: 15px;
         }
 
         /* Conteúdo Principal */
@@ -110,59 +158,98 @@
             color: white !important;
         }
 
-        
+
         .cta-button-14 {
-    background-color: transparent;      /* Fundo transparente */
-    color: #007fff;                    /* Cor do texto azul */
-    border: 2px solid #007fff;         /* Borda azul */
-    border-radius: 8px;                /* Bordas mais arredondadas */
-    padding: 10px 20px;                /* Padding maior para melhor toque */
-    cursor: pointer;                   /* Cursor pointer */
-    font-weight: bold;                 /* Texto em negrito */
-    font-size: 16px;                   /* Tamanho da fonte */
-    transition: all 0.3s ease;         /* Transição suave para todos os efeitos */
-    display: inline-flex;              /* Alinhar ícone e texto */
-    align-items: center;               /* Centralizar verticalmente */
-    gap: 8px;                          /* Espaço entre ícone e texto */
-}
+            background-color: transparent;
+            /* Fundo transparente */
+            color: #007fff;
+            /* Cor do texto azul */
+            border: 2px solid #007fff;
+            /* Borda azul */
+            border-radius: 8px;
+            /* Bordas mais arredondadas */
+            padding: 10px 20px;
+            /* Padding maior para melhor toque */
+            cursor: pointer;
+            /* Cursor pointer */
+            font-weight: bold;
+            /* Texto em negrito */
+            font-size: 16px;
+            /* Tamanho da fonte */
+            transition: all 0.3s ease;
+            /* Transição suave para todos os efeitos */
+            display: inline-flex;
+            /* Alinhar ícone e texto */
+            align-items: center;
+            /* Centralizar verticalmente */
+            gap: 8px;
+            /* Espaço entre ícone e texto */
+        }
 
-.cta-button-14:hover {
-    background-color: #007fff;         /* Fundo azul no hover */
-    color: white;                      /* Texto branco no hover */
-    box-shadow: 0 4px 12px rgba(0, 127, 255, 0.3); /* Sombra suave no hover */
-    transform: translateY(-2px);      /* Efeito de levantar o botão */
-}
+        .cta-button-14:hover {
+            background-color: #007fff;
+            /* Fundo azul no hover */
+            color: white;
+            /* Texto branco no hover */
+            box-shadow: 0 4px 12px rgba(0, 127, 255, 0.3);
+            /* Sombra suave no hover */
+            transform: translateY(-2px);
+            /* Efeito de levantar o botão */
+        }
 
-.cta-button-14:active {
-    transform: translateY(0);          /* Remove o efeito de levantar ao clicar */
-    box-shadow: 0 2px 6px rgba(0, 127, 255, 0.3); /* Sombra mais suave ao clicar */
-}
+        .cta-button-14:active {
+            transform: translateY(0);
+            /* Remove o efeito de levantar ao clicar */
+            box-shadow: 0 2px 6px rgba(0, 127, 255, 0.3);
+            /* Sombra mais suave ao clicar */
+        }
 
-/* Ícone SVG (opcional) */
-.cta-button-14 svg {
-    width: 20px;
-    height: 20px;
-    fill: #007fff;                     /* Cor do ícone */
-    transition: fill 0.3s ease;        /* Transição suave para o ícone */
-}
+        /* Ícone SVG (opcional) */
+        .cta-button-14 svg {
+            width: 20px;
+            height: 20px;
+            fill: #007fff;
+            /* Cor do ícone */
+            transition: fill 0.3s ease;
+            /* Transição suave para o ícone */
+        }
 
-.cta-button-14:hover svg {
-    fill: white;                       /* Cor do ícone no hover */
-}
+        .cta-button-14:hover svg {
+            fill: white;
+            /* Cor do ícone no hover */
+        }
 
         /* Responsividade */
         @media (max-width: 768px) {
             #sidebar {
                 transform: translateX(-100%);
+                width: 250px;
             }
 
             #sidebar.active {
                 transform: translateX(0);
             }
 
-            #content-wrapper {
-                margin-left: 0;
+            #sidebar.collapsed {
+                width: 250px;
+                /* Mantém largura normal em mobile */
             }
+
+            #content-wrapper {
+                margin-left: 0 !important;
+            }
+
+            /* Esconde o toggle em desktop se estiver em mobile */
+            #sidebarToggle {
+                display: block !important;
+            }
+
+            #sidebar.collapsed .has-submenu:hover .submenu,
+            #sidebar.collapsed .has-submenu:focus-within .submenu {
+                left: 70px;
+                top: auto;
+            }
+
         }
     </style>
 </head>
@@ -177,103 +264,104 @@
         </div>
     @endif
 
-   <!-- Sidebar -->
-<div id="sidebar">
-    <div class="sidebar-header">
-        <img src="{{asset('assets/img/logo.png')}}" alt="BANCA DE LEADS">
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <img src="{{asset('assets/img/logo.png')}}" alt="BANCA DE LEADS">
+        </div>
+        <ul class="navbar-nav">
+            <!-- Área do Cliente -->
+            @if(Auth::user()->role == "user")
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/checkout')}}">
+                        <i class="fas fa-wallet"></i> <span class="texto-sidebar">Recarregar Saldo</span>
+                    </a>
+                </li>
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-shopping-cart"></i> <span class="texto-sidebar">Comprar Leads</span> <i
+                            class="fas fa-chevron-down ml-auto"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{url('/leads')}}">Leads Avulsas</a></li>
+                        <li><a href="{{url('/pacotes')}}">Pacotes de Leads</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/minhas/leads')}}">
+                        <i class="fas fa-folder-open"></i> <span class="texto-sidebar">Minhas Leads</span>
+                    </a>
+                </li>
+            @endif
+
+            <!-- Gestão de Reposições -->
+            @if(Auth::user()->role !== "admin")
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/reposicoes')}}">
+                        <i class="fas fa-sync-alt"></i> <span class="texto-sidebar">Solicitar Reposições</span>
+                    </a>
+                </li>
+            @endif
+
+            <!-- Gestão de Corretores e Financeiro -->
+            @if(Auth::user()->role === "user")
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/corretores')}}">
+                        <i class="fas fa-users"></i> <span class="texto-sidebar">Gestão de Corretores</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/meus/extratos')}}">
+                        <i class="fas fa-chart-line"></i> <span class="texto-sidebar">Extrato Financeiro</span>
+                    </a>
+                </li>
+            @endif
+
+            <!-- Área do Administrador -->
+            @if(Auth::user()->role === "admin")
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/planos')}}">
+                        <i class="fas fa-cogs"></i> Configuração de Planos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/tipos')}}">
+                        <i class="fas fa-cogs"></i> Configuração de Tipos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/leads')}}">
+                        <i class="fas fa-cogs"></i> Configuração de Leads
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/avisos')}}">
+                        <i class="fas fa-cogs"></i> Configuração de Avisos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/users')}}">
+                        <i class="fas fa-users-cog"></i> Gerenciar Usuários
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/marketing')}}">
+                        <i class="fas fa-bullhorn"></i> Campanhas de Marketing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/reposicoes')}}">
+                        <i class="fas fa-undo"></i> Reposições Pendentes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/financeiro/vendas')}}">
+                        <i class="fas fa-coins"></i> Relatórios Financeiros
+                    </a>
+                </li>
+            @endif
+        </ul>
     </div>
-    <ul class="navbar-nav">
-        <!-- Área do Cliente -->
-        @if(Auth::user()->role == "user")
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/checkout')}}">
-                    <i class="fas fa-wallet"></i> Recarregar Saldo
-                </a>
-            </li>
-            <li class="nav-item has-submenu">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-shopping-cart"></i> Comprar Leads <i class="fas fa-chevron-down ml-auto"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="{{url('/leads')}}">Leads Avulsas</a></li>
-                    <li><a href="{{url('/pacotes')}}">Pacotes de Leads</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/minhas/leads')}}">
-                    <i class="fas fa-folder-open"></i> Minhas Leads
-                </a>
-            </li>
-        @endif
-
-        <!-- Gestão de Reposições -->
-        @if(Auth::user()->role !== "admin")
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/reposicoes')}}">
-                    <i class="fas fa-sync-alt"></i> Solicitar Reposições
-                </a>
-            </li>
-        @endif
-
-        <!-- Gestão de Corretores e Financeiro -->
-        @if(Auth::user()->role === "user")
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/corretores')}}">
-                    <i class="fas fa-users"></i> Gestão de Corretores
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/meus/extratos')}}">
-                    <i class="fas fa-chart-line"></i> Extrato Financeiro
-                </a>
-            </li>
-        @endif
-
-        <!-- Área do Administrador -->
-        @if(Auth::user()->role === "admin")
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/planos')}}">
-                    <i class="fas fa-cogs"></i> Configuração de Planos
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/tipos')}}">
-                    <i class="fas fa-cogs"></i> Configuração de Tipos
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/leads')}}">
-                    <i class="fas fa-cogs"></i> Configuração de Leads
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/avisos')}}">
-                    <i class="fas fa-cogs"></i> Configuração de Avisos
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/users')}}">
-                    <i class="fas fa-users-cog"></i> Gerenciar Usuários
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/marketing')}}">
-                    <i class="fas fa-bullhorn"></i> Campanhas de Marketing
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/reposicoes')}}">
-                    <i class="fas fa-undo"></i> Reposições Pendentes
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/admin/financeiro/vendas')}}">
-                    <i class="fas fa-coins"></i> Relatórios Financeiros
-                </a>
-            </li>
-        @endif
-    </ul>
-</div>
 
 
     <!-- End of Sidebar -->
@@ -287,6 +375,12 @@
             <!-- Topbar -->
             <nav class="navbar shadow navbar-expand navbar-light topbar mb-4 static-top"
                 style="padding: 0 !important; height: 120px;   background-color: #007fff !important;">
+                <div>
+                    <button id="sidebarToggle" class="btn btn-link text-white mr-3">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+
 
                 <!-- Sidebar Toggle (Topbar) -->
                 {{-- <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3 open-drawer-btn">
@@ -369,6 +463,8 @@
             </nav>
             @if(Auth::user()->role == "user")
                 <div class="w-100 d-flex justify-content-end align-items-center">
+                    <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Recarregar
+                        Saldo</button>
                     <span onclick="window.location.href = '{{url("/checkout")}}'" class="on-hover p-3">
                         Meu saldo
                         <strong>
@@ -377,9 +473,10 @@
                         </strong>
                     </span>
                 </div>
-                <div class="w-100 p-3 d-flex justify-content-end align-items-center">
-                    <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Recarregar Saldo</button>
-                </div>
+                {{-- <div class="w-100 p-3 d-flex justify-content-end align-items-center">
+                    <button class="cta-button-14" onclick="window.location.href = '{{url("/checkout")}}'">Recarregar
+                        Saldo</button>
+                </div> --}}
             @endif
 
             <!-- End of Topbar -->
@@ -425,7 +522,8 @@
                 <div class="text-center my-auto">
                 </div>
                 <div class="copyright text-center my-auto">
-                    <a style="color: black;" target="_blank" href="https://bancadeleads.com.br/sistema/termos.php">Termos e a
+                    <a style="color: black;" target="_blank"
+                        href="https://bancadeleads.com.br/sistema/termos.php">Termos e a
                         política de privacidade</a>
                 </div>
                 <div class="copyright text-center mt-5">
@@ -604,6 +702,34 @@
                 overlay.classList.remove("active");
             });
 
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const contentWrapper = document.getElementById('content-wrapper');
+
+            // Verifica estado salvo
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            if (isCollapsed) {
+                sidebar.classList.add('collapsed');
+                contentWrapper.style.marginLeft = '70px';
+            }
+
+            // Evento do botão toggle
+            sidebarToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+
+                // Ajusta o conteúdo principal
+                if (sidebar.classList.contains('collapsed')) {
+                    contentWrapper.style.marginLeft = '70px';
+                    localStorage.setItem('sidebarCollapsed', 'true');
+                } else {
+                    contentWrapper.style.marginLeft = '250px';
+                    localStorage.setItem('sidebarCollapsed', 'false');
+                }
+            });
         });
     </script>
     @yield("script")
