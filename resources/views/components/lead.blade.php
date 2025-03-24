@@ -93,8 +93,8 @@
                 <td>DDD ({{$lead->ddd}})</td>
             </tr>
             <tr style="background-color: #fafafa; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
-                <th><i class="fas fa-user"></i> Idade</th>
-                <td>{{$lead->idade}} anos</td>
+                <th><i class="fas fa-user"></i> Quantidade</th>
+                <td>{{$lead->idade}}</td>
             </tr>
             <tr style="background-color: #ebebeb; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
                 <th><i class="fas fa-briefcase"></i> Pessoa Jurídica</th>
