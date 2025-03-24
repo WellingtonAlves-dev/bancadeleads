@@ -419,7 +419,7 @@
 
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="fas fa-mobile-alt mr-2 text-muted"></i> ${lead?.plano?.nome || ''}</li>
-                        <li class="mb-2"><i class="fas fa-birthday-cake mr-2 text-muted"></i> Idade: ${lead?.idade || 'Não informada'}</li>
+                        <li class="mb-2"><i class="fas fa-user mr-2 text-muted"></i> Quantidade: ${lead?.idade || 'Não informada'}</li>
                         <li class="mb-2"><i class="fas fa-clock mr-2 text-muted"></i> Horário: ${lead?.horario_partida || 'Não informado'}</li>
                     </ul>
                 </div>
