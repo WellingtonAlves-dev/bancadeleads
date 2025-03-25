@@ -294,15 +294,18 @@
                     <li><a href="{{ url('/pacotes') }}">Pacotes de Leads</a></li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/minhas/leads') }}" data-toggle="tooltip" title="Minhas Leads" data-placement="right">
-                    <i class="fas fa-folder-open"></i> <span>Minhas Leads</span>
-                </a>
-            </li>
+        @endif
+        @if(Auth::user()->role !== "admin")
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/minhas/leads') }}" data-toggle="tooltip" title="Minhas Leads" data-placement="right">
+                <i class="fas fa-folder-open"></i> <span>Minhas Leads</span>
+            </a>
+        </li>
+
         @endif
 
         <!-- Gestão de Reposições -->
-        @if(Auth::user()->role !== "admin")
+        @if(Auth::user()->role === "user")
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/reposicoes') }}" data-toggle="tooltip" title="Reposições Solicitadas" data-placement="right">
                     <i class="fas fa-sync-alt"></i> <span>Reposições Solicitadas</span>
@@ -446,7 +449,7 @@
                             </div>
                         </li>
                     @endif
-                    @if(Auth::user()->role == "user")
+                    @if(Auth::user()->role != "admin")
                         <li class="nav-item">
                             <div class="h-100 px-4 flex">
                                 <div class="col h-100 d-flex flex-row justify-content-center align-items-center ">
