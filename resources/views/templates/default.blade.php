@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{asset('assets')}}/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
     <style>
         /* Sidebar Fixa */
