@@ -249,6 +249,10 @@
                 display: block;
             }
 
+            .saldo_infos {
+                font-size: 20px !important;
+            }
+
         }
     </style>
 </head>

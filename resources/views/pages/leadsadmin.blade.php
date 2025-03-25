@@ -73,7 +73,7 @@
                             <tbody id="lead_main">
                                 @foreach($leads as $lead)
 
-                                <tr>
+                                <tr style="background-color: gainsboro; color: black;">
                                     <td>{{$lead->id}}</td>
                                     <td>
                                         <input type="checkbox" onclick="toggleStatusLead({{$lead->id}}, this)" @checked($lead->ativo)/>

@@ -2,7 +2,7 @@
 @section("title")
 <!-- Título da página -->
 <div class="d-flex justify-content-between mb-2">
-    <h2>Leads Que Comprei</h2>
+    <h2>Minhas Leads</h2>
 </div>
 @endsection
 @section("menu")
@@ -124,13 +124,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Motivo da contestação</h5>
+                <h5 class="modal-title">Solicitar contestação</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Informe detalhadamente o motivo da sua contestação e clique em solicitar.</p>
+                <p>Descreva com detalhes o motivo pela qual você está solicitando a contestação desta lead.</p>
                 <textarea class="form-control" id="descricao_reposicao"></textarea>
                 <span class="text-danger" id="alerta_motivo_reposicao"></span>
             </div>

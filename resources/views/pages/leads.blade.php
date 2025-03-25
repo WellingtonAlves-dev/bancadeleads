@@ -283,6 +283,14 @@ $estados = array(
         font-size: 18px;                 /* Ajusta o tamanho da fonte do plano */
     }
 
+    .col-md-3 label {
+        margin-top: 30px !important;
+    }
+
+    .col-md-3.d-flex.gap-2 {
+    margin-top: 30px !important;
+    }
+
 }
 
 .select2-search__field {
@@ -291,7 +299,6 @@ $estados = array(
 .select2-container {
     width: 100% !important;
 }
-
 
 </style>
 
