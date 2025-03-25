@@ -5,7 +5,6 @@
     body {
         font-family: 'Lato', sans-serif;
         background-color: #007fff;
-        overflow-y: hidden;
         margin: 0;
         padding: 0;
     }
@@ -29,7 +28,6 @@
         max-width: 500px;
         background: white;
         border-radius: 12px;
-        overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
