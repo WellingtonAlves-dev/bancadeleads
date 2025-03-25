@@ -33,6 +33,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("index.php", function() {
+    return redirect("/"); 
+});
+
+Route::get("cadastro.php", function() {
+    return redirect("/signup");
+});
+
 Route::get("/login", [AuthController::class, "loginView"])->name("login");
 Route::post("/login", [AuthController::class, "login"])->name("login");
 Route::get("/signup", [AuthController::class, "signUpView"])->name("signup");
