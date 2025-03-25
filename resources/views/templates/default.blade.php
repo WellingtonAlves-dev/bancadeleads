@@ -110,8 +110,14 @@
 
         #sidebar .submenu {
             display: none;
-            padding-left: 20px;
+            padding-left: 25px;
             background-color: rgba(0, 0, 0, 0.1);
+            text-align: left !important;
+            text-decoration: none;
+        }
+
+        #sidebar .submenu li {
+            text-decoration: none !important;
         }
 
 
@@ -132,8 +138,14 @@
         #sidebar.collapsed .submenu {
             position: fixed;
             background-color: #1c2541;
-            left: 10px;
-            padding: 15px;
+            left: 20px;
+            padding: 16px;
+            border-radius: 6px;
+        }
+
+        #sidebar.collapsed .submenu li, ul, ol{
+            list-style: none !important;
+            padding-left: 0;
         }
 
         /* Conteúdo Principal */
