@@ -104,10 +104,6 @@
                 <th><i class="fas fa-info-circle"></i> Observação</th>
                 <td>{{$lead->extra ?? 'Nenhuma'}}</td>
             </tr>
-            <tr style="background-color: #ebebeb; border-top: 1px solid rgba(0,0,0,0.5) !important; color: black;">
-                <th><i class="fas fa-city"></i> DDD</th>
-                <td>{{$lead->ddd ?? '00'}}</td>
-            </tr>
             @if(Auth::user()->role == "admin")
             <tr class="text-danger fw-bold">
                 <th>Disponível até</th>

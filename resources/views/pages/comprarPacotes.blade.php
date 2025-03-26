@@ -421,7 +421,7 @@
                         <li class="mb-2"><i class="fas fa-mobile-alt mr-2 text-muted"></i> ${lead?.plano?.nome || ''}</li>
                         <li class="mb-2"><i class="fas fa-user mr-2 text-muted"></i> Quantidade: ${lead?.idade || 'Não informada'}</li>
                         <li class="mb-2"><i class="fas fa-clock mr-2 text-muted"></i> Horário: ${lead?.horario_partida || 'Não informado'}</li>
-                        <li class="mb-2"><i class="fas fa-city mr-2 text-muted"></i> DDD: ${lead?.ddd || 'Não informado'}</li>
+                        <li class="mb-2"><i class="fas fa-phone mr-2 text-muted"></i> DDD: ${lead?.ddd || 'Não informado'}</li>
                     </ul>
                 </div>
             </div>
