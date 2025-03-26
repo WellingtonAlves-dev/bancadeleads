@@ -1,6 +1,6 @@
 @extends("templates.auth")
 @section("content")
-
+<title>Banca de Leads - Entrar</title>
 <style>
     body {
         font-family: 'Lato', sans-serif;

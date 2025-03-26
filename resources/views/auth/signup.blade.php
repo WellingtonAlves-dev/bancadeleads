@@ -1,5 +1,6 @@
 @extends("templates.auth")
 @section("content")
+<title>Banca de Leads - Cadastre-se</title>
 
 <style>
     body {
