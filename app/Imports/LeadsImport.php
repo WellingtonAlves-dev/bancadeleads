@@ -72,7 +72,7 @@ class LeadsImport implements ToCollection, WithHeadingRow
                 "idade" => $row["idade"] ?? "NÃO INFORMADO",
                 "cnpj" => in_array(strtolower($row["cnpj"] ?? ""), ["não","nao", "n"]) == "Não" ? false : true,
                 "horario_partida" => Carbon::now(),
-                "id_global" => $row["id_global"] ? $row["id_global"] : null
+                "id_global" => isset($row["id_global"]) ? $row["id_global"] : null
             ];
 
             $dataAtual = Carbon::now();
