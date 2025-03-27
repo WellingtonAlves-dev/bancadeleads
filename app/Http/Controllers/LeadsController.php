@@ -415,7 +415,7 @@ class LeadsController extends Controller
 
     private function excluirLeadExterna($id_global)
     {
-        $urls = ["https://mastersaudeleads.com.br/sistema/api/", "https://portalleads.com.br/app/api/", "http://indicasaude.com.br/app/api/"];
+        $urls = ["https://mastersaudeleads.com.br/sistema/api/", "https://portalleads.com.br/app/api/", "https://www.indicasaude.com.br/app/api/"];
         foreach ($urls as $key => $url) {
             try {
                 $client = new Client();
