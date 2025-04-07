@@ -64,7 +64,7 @@
                                 @elseif($lead->preco > ($saldoReposicao ?? 0))
                                     <span class="badge bg-danger"><small>Limite excedido</small></span>
                                 @elseif($blockedReposicao)
-                                    <span class="badge bg-secondary"><small>Prazo expirado</small></span>
+                                    <span class="badge bg-danger"><small>Prazo expirado</small></span>
                                 @elseif(($lead->statusLeadFria ?? false))
                                     <span class="badge bg-info"><small>Lead fria</small></span>
                                 @else
