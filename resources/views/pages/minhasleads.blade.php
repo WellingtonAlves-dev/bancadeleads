@@ -70,7 +70,7 @@
                                 @elseif(($lead->statusLeadFria ?? false))
                                     <span class="badge bg-info">Lead fria</span>
                                 @else
-                                    <button class="btn btn-sm btn-primary p-0" onclick="modalReposicao('{{$lead->id}}')"><small>Clique aqui para Solicitar reposição desta Lead</small></button>
+                                    <button class="btn btn-sm btn-primary" onclick="modalReposicao('{{$lead->id}}')"><small>Clique aqui para Solicitar reposição desta Lead</small></button>
                                 @endif
                             </div>
                         </div>
