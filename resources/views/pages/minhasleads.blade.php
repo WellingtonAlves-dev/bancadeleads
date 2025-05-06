@@ -57,9 +57,10 @@
                         @php
                             $blockedReposicao = strtotime(date("Y-m-d H:i:s")) > strtotime($lead->dataAquisicao . " + 48 hours");
                         @endphp
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-center" style="text-align: center;">
                             <div>
                                 <small><strong>Reposição: </strong></small>
+                                <br/>
                                 @if($lead->reposicaoID)
                                     <span class="badge bg-warning text-dark">Reposição já solicitada</span>
                                 @elseif($lead->preco > ($saldoReposicao ?? 0))
