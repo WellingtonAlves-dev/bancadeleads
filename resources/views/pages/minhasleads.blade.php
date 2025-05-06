@@ -61,15 +61,15 @@
                             <div>
                                 <strong>Reposição: </strong>
                                 @if($lead->reposicaoID)
-                                    <span class="badge bg-warning text-dark">Contestação já solicitada</span>
+                                    <span class="badge bg-warning text-dark">Reposição já solicitada</span>
                                 @elseif($lead->preco > ($saldoReposicao ?? 0))
-                                    <span class="badge bg-danger">Limite excedido</span>
+                                    <span class="badge bg-danger">Limite de solicitação excedido</span>
                                 @elseif($blockedReposicao)
-                                    <span class="badge bg-danger">Prazo expirado</span>
+                                    <span class="badge bg-danger">Prazo para solicitar expirado</span>
                                 @elseif(($lead->statusLeadFria ?? false))
                                     <span class="badge bg-info">Lead fria</span>
                                 @else
-                                    <button class="btn btn-sm btn-secondary p-1" onclick="modalReposicao('{{$lead->id}}')"><small>Clique aqui para Solicitar reposição desta Lead</small></button>
+                                    <button class="btn btn-sm btn-primary p-1" onclick="modalReposicao('{{$lead->id}}')"><small>Clique aqui para Solicitar reposição desta Lead</small></button>
                                 @endif
                             </div>
                         </div>
@@ -78,9 +78,11 @@
                     @endif
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <button class="btn w-100 bg-danger text-white p-2 mt-3" onclick="{{$lead->corretor ? "alert('Esta lead já pertence a um corretor.')" : ""}};enviarLeadModal('{{$lead->id}}', '{{$key}}')"><small>Enviar Lead para corretor</small></button>
-            </div>
+            @if(Auth::user()->role == "user")
+                <div class="d-flex justify-content-center">
+                    <button class="btn bg-danger text-white p-2 mt-3" onclick="{{$lead->corretor ? "alert('Esta lead já pertence a um corretor.')" : ""}};enviarLeadModal('{{$lead->id}}', '{{$key}}')"><small>Enviar Lead para corretor</small></button>
+                </div>
+            @endif
         </div>
     @endforeach
 </div>
