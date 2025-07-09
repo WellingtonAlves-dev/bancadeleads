@@ -137,7 +137,7 @@ class ReposicaoController extends Controller
             // adicionar o saldo com o valor da Lead
             $saldos = new Saldos();
             $lead = Lead::where("id", $reposicao->lead_id)->first();    
-            $saldos->gerarEntrada($reposicao->solicitante, $lead->preco, "ESTORNO DA LEAD # ". $reposicao->lead_id, true);
+            $saldos->gerarEntradaReposicao($reposicao->solicitante, $lead->preco, "ESTORNO DA LEAD # ". $reposicao->lead_id);
 
             //remover essa lead da página "Minhas Leads"
             MinhasLeads::where("id_lead", $reposicao->lead_id)->delete();

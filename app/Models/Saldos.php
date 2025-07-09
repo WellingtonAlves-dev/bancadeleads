@@ -43,6 +43,21 @@ class Saldos extends Model
         }
 
     }
+
+    public function gerarEntradaReposicao($user_id, $valor, $observacao) {
+        $user = User::where("id", $user_id)->first();
+        $saldoUser = $user->getValorSaldo();
+        $this->saldo_atual = $saldoUser + $valor;
+        $this->saldo_anterior = $saldoUser;
+
+        $this->tipo = "entrada";
+        $this->user_id = $user_id;
+        $this->valor = $valor;
+        $this->observação = $observacao;
+        $this->saldo_reposicao = Saldos::saldoReposicaoByUser($user_id);
+        $this->save();
+    }
+
     public function gerarSaida($user_id, $valor, $observacao, $lead_id = null, $lead_fria = false) {
         $user = User::where("id", $user_id)->first();
         $saldoUser = $user->getValorSaldo();
