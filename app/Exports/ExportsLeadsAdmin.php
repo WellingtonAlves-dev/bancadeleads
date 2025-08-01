@@ -21,9 +21,11 @@ class ExportsLeadsAdmin implements FromView
             $leads->where("ddd", $request->ddd);
         }
         if($request->data_inicial && $request->data_final) {
-            $leads->whereBetween("leads.created_at", [$request->data_inicial, $request->data_final])
-            ->orWhereDate("leads.created_at", $request->data_inicial)
-            ->orWhereDate("leads.created_at", $request->data_final);    
+            $leads->where(function($query) use ($request) {
+                $query->whereBetween("leads.created_at", [$request->data_inicial, $request->data_final])
+                    ->orWhereDate("leads.created_at", $request->data_inicial)
+                    ->orWhereDate("leads.created_at", $request->data_final);
+            });
         }
         $leads = $leads->get();
         return view("exports.templates.minhasleads", [
