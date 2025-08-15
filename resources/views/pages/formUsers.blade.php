@@ -103,7 +103,7 @@ id="formSubmit">
     @endif
     <a href="{{url("/admin/users")}}" class="btn btn-secondary">Voltar</a>
 
-    @if(Request::is("admin/users/editar/*") && ($user->role ?? null) != "corretor")
+    @if(Request::is("admin/users/editar/*") && ($user->role ?? null) != "admin")
         <button onclick="excluirUser()" type="button" class="btn btn-danger float-right">Excluir</button>
     @endif
 
