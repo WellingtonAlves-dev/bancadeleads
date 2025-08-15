@@ -96,7 +96,7 @@ id="formSubmit">
             Entrar
         </a>
     @endif
-    @if(($user->role ?? null) != "corretor" )
+    @if(($user->role ?? null) != "admin" )
         <button type="submit" class="btn btn-primary">
             Salvar
         </button>
