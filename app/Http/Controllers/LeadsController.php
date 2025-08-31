@@ -83,8 +83,15 @@ class LeadsController extends Controller
         $leads = $leads->leftJoin("users", "id_user", "users.id");
         $dataHoje = date("Y-m-d H:i:s");
         if(Auth::user()->role != "admin") {
+            $userId = Auth::user()->id;
             $leads = $leads->where("leads.ativo", true);
-            $leads = $leads->whereNull("minhas_leads.id");
+            $leads = $leads->whereNull("minhas_leads.id")
+                   ->whereNotExists(function($q) use ($userId) {
+                       $q->select(DB::raw(1))
+                         ->from("reposicaos as repo")
+                         ->whereColumn("repo.lead_id", "leads.id") // mesma lead
+                         ->where("repo.solicitante", $userId);    // mesmo usuário
+                   });
         }
         if(is_array($request->ddd) && count($request->ddd) > 0) {
             $leads = $leads->whereIn("ddd", $request->ddd);
