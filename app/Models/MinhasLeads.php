@@ -14,4 +14,8 @@ class MinhasLeads extends Model
         "id_user",
         "observacao"
     ];
+
+    public function leadInfo() {
+        return $this->hasOne(Lead::class, "id", "id_lead");
+    }
 }
