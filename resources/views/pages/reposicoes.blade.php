@@ -45,7 +45,7 @@
                                             {{ $reposicao->status }}
                                         </td>
                                         <td>
-                                            <button onclick="viewReposicao('{{ $reposicao->id }}', `{{ $reposicao->descricao }}`, '{{ $reposicao->lead_id }}', '{{ $reposicao->solicitante }}', '{{ $reposicao->user_name }}')" class="btn btn-primary btn-sm">
+                                            <button onclick="viewReposicao('{{ $reposicao->id }}', `{{ $reposicao->descricao }}`, '{{ $reposicao->lead_id }}', '{{ $reposicao->solicitante }}', '{{ $reposicao->user_name }}', '{{ \Carbon\Carbon::parse($reposicao->data_compra)->format('d/m/Y H:i:s') }}', '{{ \Carbon\Carbon::parse($reposicao->created_at)->format('d/m/Y H:i:s') }}')" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                         </td>
@@ -89,6 +89,14 @@
                 <th>LEAD: </th>
                 <td id="lead_info"></td>
               </tr>
+              <tr>
+                <th>Data da compra da lead: </th>
+                <td id="lead_data_compra"></td>
+              </tr>
+              <tr>
+                <th>Data da solicitação da reposição: </th>
+                <td id="data_reposicao"></td>
+              </tr>
             </table>
             <hr/>
             <label>Motivo da solicitação: </label><br/>
@@ -115,13 +123,17 @@
     let reposicao_modal_descricao = $("#reposicao_modal_descricao");
     let reposicao_modal_solicitante = $("#solicitante_name_info");
     let reposicao_modal_lead = $("#lead_info");
+    let reposicao_modal_data_compra = $("#lead_data_compra");
+    let reposicao_modal_data_reposicao = $("#data_reposicao");
 
     const base_url = "{{url("/")}}";
 
-    function viewReposicao(id_reposicao, descricao, id_lead, solicitante_id, solicitante) {
+    function viewReposicao(id_reposicao, descricao, id_lead, solicitante_id, solicitante, data_compra, data_reposicao) {
         reposicao_solicitada = id_reposicao;
         reposicao_modal_solicitante.html(`<a href='${base_url + "/admin/users/editar/" + solicitante_id}' target='_blank'>${solicitante}</a>`)
         reposicao_modal_lead.html(`<a href='${base_url + "/admin/leads/editar/" + id_lead}' target='_blank'>#${id_lead}</a>`)
+        reposicao_modal_data_compra.html(`${data_compra}`);
+        reposicao_modal_data_reposicao.html(`${data_reposicao}`);
         reposicao_modal_descricao.html(descricao);
         reposicao_modal.modal("show");
     }

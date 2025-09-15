@@ -92,8 +92,9 @@ class ReposicaoController extends Controller
     public function indexAdmin(Request $request, Reposicao $reposicao) {
     
         $reposicoes = $reposicao
-            ->select("reposicaos.*", "users.name as user_name")
+            ->select("reposicaos.*", "users.name as user_name", "saldos.created_at as data_compra")
             ->join("users", "users.id", "reposicaos.solicitante")
+            ->leftJoin("saldos", "reposicaos.lead_id", "saldos.lead_id")
             ->orderBy("reposicaos.id", "desc");
 
         $TAB = $request->tab;
